@@ -1,0 +1,163 @@
+Change Component Designator: OldDesignator=A1 NewDesignator=MEGA
+Change Component Designator: OldDesignator=J? NewDesignator=COLOR SENSOR
+Change Component Designator: OldDesignator=J? NewDesignator=IR ARRAY
+Change Component Designator: OldDesignator=J? NewDesignator=MOTOR 1 (C)
+Change Component Designator: OldDesignator=J? NewDesignator=MOTOR 1 EN
+Change Component Designator: OldDesignator=J? NewDesignator=MOTOR 2 (C)
+Change Component Designator: OldDesignator=J? NewDesignator=MOTOR 2 EN
+Change Component Designator: OldDesignator=J? NewDesignator=POWER IN (5V)
+Change Component Designator: OldDesignator=J? NewDesignator=TOF 1
+Change Component Designator: OldDesignator=J? NewDesignator=TOF 2
+Change Component Designator: OldDesignator=J? NewDesignator=TOF 3
+Change Component Designator: OldDesignator=J? NewDesignator=TOF 4
+Change Component Designator: OldDesignator=J? NewDesignator=TOF 5
+Change Component Designator: OldDesignator=J? NewDesignator=TOF 6
+Change Component Designator: OldDesignator=J? NewDesignator=TOF 7
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=R? NewDesignator=R2
+Change Component Designator: OldDesignator=U? NewDesignator=I2C MUX
+Added Component: Designator=DISP(JST_B4B-XH-A(LF)(SN))
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/B4B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "JST Sales"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/B4B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=MIC(SAMTEC_TS-104-G-AA)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Samtec Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "TS-104-G-AA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=SERVO 1(AMPHENOL_75160-101-03LF)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/75160-101-03LF/Amphenol+FCI/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Amphenol ICC (FCI)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "75160-101-03LF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/75160-101-03LF/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/75160-101-03LF/Amphenol+FCI/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=SERVO 2(AMPHENOL_75160-101-03LF)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/75160-101-03LF/Amphenol+FCI/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Amphenol ICC (FCI)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "75160-101-03LF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/75160-101-03LF/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/75160-101-03LF/Amphenol+FCI/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VCC Pin=DISP-1
+Added Pin To Net: NetName=GND Pin=DISP-2
+Added Pin To Net: NetName=VCC Pin=IR ARRAY-9
+Added Pin To Net: NetName=GND Pin=IR ARRAY-10
+Added Pin To Net: NetName=GND Pin=MIC-02
+Added Pin To Net: NetName=VCC Pin=MIC-03
+Added Pin To Net: NetName=GND Pin=MOTOR 1 EN-3
+Added Pin To Net: NetName=VCC Pin=MOTOR 1 EN-4
+Added Pin To Net: NetName=GND Pin=MOTOR 2 EN-3
+Added Pin To Net: NetName=VCC Pin=MOTOR 2 EN-4
+Added Pin To Net: NetName=GND Pin=SERVO 1-1
+Added Pin To Net: NetName=VCC Pin=SERVO 1-2
+Added Pin To Net: NetName=GND Pin=SERVO 2-1
+Added Pin To Net: NetName=VCC Pin=SERVO 2-2
+Change Net Name : Old Net Name=NetJ?_1 New Net Name=NetTOF 1_1
+Change Net Name : Old Net Name=NetJ?_2 New Net Name=NetPOWER IN (5V)_2
+Added Pin To Net: NetName=A0 Pin=IR ARRAY-1
+Added Pin To Net: NetName=A0 Pin=MEGA-AD0
+Added Net: Name=A0
+Added Pin To Net: NetName=A1 Pin=IR ARRAY-2
+Added Pin To Net: NetName=A1 Pin=MEGA-AD1
+Added Net: Name=A1
+Added Pin To Net: NetName=A2 Pin=IR ARRAY-3
+Added Pin To Net: NetName=A2 Pin=MEGA-AD2
+Added Net: Name=A2
+Added Pin To Net: NetName=A3 Pin=IR ARRAY-4
+Added Pin To Net: NetName=A3 Pin=MEGA-AD3
+Added Net: Name=A3
+Added Pin To Net: NetName=A4 Pin=IR ARRAY-5
+Added Pin To Net: NetName=A4 Pin=MEGA-AD4
+Added Net: Name=A4
+Added Pin To Net: NetName=A5 Pin=IR ARRAY-6
+Added Pin To Net: NetName=A5 Pin=MEGA-AD5
+Added Net: Name=A5
+Added Pin To Net: NetName=A6 Pin=IR ARRAY-7
+Added Pin To Net: NetName=A6 Pin=MEGA-AD6
+Added Net: Name=A6
+Added Pin To Net: NetName=A7 Pin=IR ARRAY-8
+Added Pin To Net: NetName=A7 Pin=MEGA-AD7
+Added Net: Name=A7
+Added Pin To Net: NetName=DISR Pin=DISP-3
+Added Pin To Net: NetName=DISR Pin=MEGA-0
+Added Net: Name=DISR
+Added Pin To Net: NetName=DIST Pin=DISP-4
+Added Pin To Net: NetName=DIST Pin=MEGA-1
+Added Net: Name=DIST
+Added Pin To Net: NetName=MEA1 Pin=MEGA-19
+Added Pin To Net: NetName=MEA1 Pin=MOTOR 1 EN-1
+Added Net: Name=MEA1
+Added Pin To Net: NetName=MEA2 Pin=MEGA-18
+Added Pin To Net: NetName=MEA2 Pin=MOTOR 1 EN-2
+Added Net: Name=MEA2
+Added Pin To Net: NetName=MEB1 Pin=MEGA-2
+Added Pin To Net: NetName=MEB1 Pin=MOTOR 2 EN-1
+Added Net: Name=MEB1
+Added Pin To Net: NetName=MEB2 Pin=MEGA-3
+Added Pin To Net: NetName=MEB2 Pin=MOTOR 2 EN-2
+Added Net: Name=MEB2
+Added Pin To Net: NetName=MICD Pin=MEGA-28
+Added Pin To Net: NetName=MICD Pin=MIC-04
+Added Net: Name=MICD
+Added Pin To Net: NetName=MIC Pin=MEGA-AD8
+Added Pin To Net: NetName=MIC Pin=MIC-01
+Added Net: Name=MIC
+Added Pin To Net: NetName=NetPOWER IN (5V)_1 Pin=POWER IN (5V)-1
+Added Pin To Net: NetName=NetPOWER IN (5V)_1 Pin=S?-2
+Added Net: Name=NetPOWER IN (5V)_1
+Added Pin To Net: NetName=NetTOF 2_1 Pin=TOF 2-1
+Added Pin To Net: NetName=NetTOF 2_1 Pin=TOF controller-2A
+Added Net: Name=NetTOF 2_1
+Added Pin To Net: NetName=NetTOF 3_1 Pin=TOF 3-1
+Added Pin To Net: NetName=NetTOF 3_1 Pin=TOF controller-3A
+Added Net: Name=NetTOF 3_1
+Added Pin To Net: NetName=NetTOF 4_1 Pin=TOF 4-1
+Added Pin To Net: NetName=NetTOF 4_1 Pin=TOF controller-4A
+Added Net: Name=NetTOF 4_1
+Added Pin To Net: NetName=NetTOF 5_1 Pin=TOF 5-1
+Added Pin To Net: NetName=NetTOF 5_1 Pin=TOF controller-5A
+Added Net: Name=NetTOF 5_1
+Added Pin To Net: NetName=NetTOF 6_1 Pin=TOF 6-1
+Added Pin To Net: NetName=NetTOF 6_1 Pin=TOF controller-6A
+Added Net: Name=NetTOF 6_1
+Added Pin To Net: NetName=NetTOF 7_1 Pin=TOF 7-1
+Added Pin To Net: NetName=NetTOF 7_1 Pin=TOF controller-7A
+Added Net: Name=NetTOF 7_1
+Added Pin To Net: NetName=SER0 Pin=MEGA-12
+Added Pin To Net: NetName=SER0 Pin=SERVO 2-3
+Added Net: Name=SER0
+Added Pin To Net: NetName=SER1 Pin=MEGA-11
+Added Pin To Net: NetName=SER1 Pin=SERVO 1-3
+Added Net: Name=SER1
+Added Member To Class: ClassName=Sheet1 Member=Component COLOR SENSOR B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component DISP B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component IR ARRAY 75160-101-10LF
+Added Member To Class: ClassName=Sheet1 Member=Component MIC TS-104-G-AA
+Added Member To Class: ClassName=Sheet1 Member=Component MOTOR 1 (C) B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component MOTOR 1 EN B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component MOTOR 2 (C) B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component MOTOR 2 EN B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component POWER IN (5V) B2B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component R1 1623927-1
+Added Member To Class: ClassName=Sheet1 Member=Component S? TL2285EE
+Added Member To Class: ClassName=Sheet1 Member=Component SERVO 1 75160-101-03LF
+Added Member To Class: ClassName=Sheet1 Member=Component SERVO 2 75160-101-03LF
+Added Member To Class: ClassName=Sheet1 Member=Component TOF 2 B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component TOF 3 B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component TOF 4 B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component TOF 5 B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component TOF 6 B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component TOF 7 B4B-XH-A(LF)(SN)
+Added Room: Name=Sheet1

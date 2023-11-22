@@ -1,0 +1,38 @@
+Added Component: Designator=J?(AMPHENOL_75160-101-10LF)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "75160-101-10LF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J?(JST_B2B-XH-A(LF)(SN))
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "JST Sales America Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "B2B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J?(JST_B2B-XH-A(LF)(SN))
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "JST Sales America Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "B2B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/B2B-XH-A(LF)(SN)/JST+Sales+America+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? 75160-101-10LF
+Added Member To Class: ClassName=Sheet1 Member=Component J? B2B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component R? 1623927-1
+Added Member To Class: ClassName=Sheet1 Member=Component S? DS02-254-2L-07BE
+Added Room: Name=Sheet1

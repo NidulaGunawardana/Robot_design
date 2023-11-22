@@ -1,0 +1,59 @@
+Removed Pin From Net: NetName=GND Pin=POWER-2
+Removed Pin From Net: NetName=GND Pin=POWER-3
+Removed Pin From Net: NetName=5V Pin=POWER-4
+Change Component Footprint: Designator=Rekya? Old Footprint=61301011821 New Footprint=61301011821
+Added Component: Designator=MIC(B3B-PH-K)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/B3B-PH-K/JST/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "JST"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "B3B-PH-K"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/B3B-PH-K/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/B3B-PH-K/JST/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=Servo1(B3B-PH-K)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/B3B-PH-K/JST/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "JST"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "B3B-PH-K"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/B3B-PH-K/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/B3B-PH-K/JST/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=Servo2(B3B-PH-K)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/B3B-PH-K/JST/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "JST"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "B3B-PH-K"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/B3B-PH-K/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/B3B-PH-K/JST/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=AD8 Pin=MIC-3
+Added Pin To Net: NetName=AD6 Pin=Rekya?-2
+Added Pin To Net: NetName=AD5 Pin=Rekya?-3
+Added Pin To Net: NetName=AD4 Pin=Rekya?-4
+Added Pin To Net: NetName=AD3 Pin=Rekya?-5
+Added Pin To Net: NetName=AD2 Pin=Rekya?-6
+Added Pin To Net: NetName=AD1 Pin=Rekya?-7
+Added Pin To Net: NetName=AD0 Pin=Rekya?-8
+Added Pin To Net: NetName=GND Pin=Servo1-2
+Added Pin To Net: NetName=PWM12 Pin=Servo1-3
+Added Pin To Net: NetName=GND Pin=Servo2-2
+Added Pin To Net: NetName=PWM13 Pin=Servo2-3
+Added Pin To Net: NetName=NetANALOG_8 Pin=ANALOG-8
+Added Pin To Net: NetName=NetANALOG_8 Pin=Rekya?-1
+Added Net: Name=NetANALOG_8
+Added Pin To Net: NetName=NetMIC_1 Pin=MIC-1
+Added Pin To Net: NetName=NetMIC_1 Pin=POWER-4
+Added Pin To Net: NetName=NetMIC_1 Pin=Rekya?-10
+Added Pin To Net: NetName=NetMIC_1 Pin=Servo1-1
+Added Pin To Net: NetName=NetMIC_1 Pin=Servo2-1
+Added Net: Name=NetMIC_1
+Added Pin To Net: NetName=NetMIC_2 Pin=MIC-2
+Added Pin To Net: NetName=NetMIC_2 Pin=POWER-3
+Added Pin To Net: NetName=NetMIC_2 Pin=Rekya?-9
+Added Net: Name=NetMIC_2

@@ -1,0 +1,117 @@
+Change Component Designator: OldDesignator=A? NewDesignator=A1
+Added Pin To Net: NetName=GND Pin=A1-GND2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=S?-3
+Added Pin To Net: NetName=GND Pin=U?-2
+Added Pin To Net: NetName=GND Pin=U?-6
+Added Pin To Net: NetName=GND Pin=U?-7
+Added Pin To Net: NetName=GND Pin=U?-8
+Added Net: Name=GND
+Added Pin To Net: NetName=NetJ?_1 Pin=J?-1
+Added Pin To Net: NetName=NetJ?_1 Pin=S?-1A
+Added Net: Name=NetJ?_1
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Added Pin To Net: NetName=NetJ?_2 Pin=J?-2
+Added Pin To Net: NetName=NetJ?_2 Pin=S?-5
+Added Net: Name=NetJ?_2
+Added Pin To Net: NetName=SC0 Pin=J?-4
+Added Pin To Net: NetName=SC0 Pin=U?-10
+Added Net: Name=SC0
+Added Pin To Net: NetName=SC1 Pin=J?-4
+Added Pin To Net: NetName=SC1 Pin=U?-12
+Added Net: Name=SC1
+Added Pin To Net: NetName=SC2 Pin=J?-4
+Added Pin To Net: NetName=SC2 Pin=U?-14
+Added Net: Name=SC2
+Added Pin To Net: NetName=SC3 Pin=J?-4
+Added Pin To Net: NetName=SC3 Pin=U?-16
+Added Net: Name=SC3
+Added Pin To Net: NetName=SC4 Pin=J?-4
+Added Pin To Net: NetName=SC4 Pin=U?-18
+Added Net: Name=SC4
+Added Pin To Net: NetName=SC5 Pin=J?-4
+Added Pin To Net: NetName=SC5 Pin=U?-20
+Added Net: Name=SC5
+Added Pin To Net: NetName=SC6 Pin=J?-4
+Added Pin To Net: NetName=SC6 Pin=U?-22
+Added Net: Name=SC6
+Added Pin To Net: NetName=SC7 Pin=J?-4
+Added Pin To Net: NetName=SC7 Pin=U?-24
+Added Net: Name=SC7
+Added Pin To Net: NetName=SCl Pin=A1-SCL
+Added Pin To Net: NetName=SCl Pin=R?-2
+Added Pin To Net: NetName=SCl Pin=U?-4
+Added Net: Name=SCl
+Added Pin To Net: NetName=SD0 Pin=J?-3
+Added Pin To Net: NetName=SD0 Pin=U?-9
+Added Net: Name=SD0
+Added Pin To Net: NetName=SD1 Pin=J?-3
+Added Pin To Net: NetName=SD1 Pin=U?-11
+Added Net: Name=SD1
+Added Pin To Net: NetName=SD2 Pin=J?-3
+Added Pin To Net: NetName=SD2 Pin=U?-13
+Added Net: Name=SD2
+Added Pin To Net: NetName=SD3 Pin=J?-3
+Added Pin To Net: NetName=SD3 Pin=U?-15
+Added Net: Name=SD3
+Added Pin To Net: NetName=SD4 Pin=J?-3
+Added Pin To Net: NetName=SD4 Pin=U?-17
+Added Net: Name=SD4
+Added Pin To Net: NetName=SD5 Pin=J?-3
+Added Pin To Net: NetName=SD5 Pin=U?-19
+Added Net: Name=SD5
+Added Pin To Net: NetName=SD6 Pin=J?-3
+Added Pin To Net: NetName=SD6 Pin=U?-21
+Added Net: Name=SD6
+Added Pin To Net: NetName=SD7 Pin=J?-3
+Added Pin To Net: NetName=SD7 Pin=U?-23
+Added Net: Name=SD7
+Added Pin To Net: NetName=SDA Pin=A1-SDA
+Added Pin To Net: NetName=SDA Pin=R?-2
+Added Pin To Net: NetName=SDA Pin=U?-3
+Added Net: Name=SDA
+Added Pin To Net: NetName=VCC Pin=A1-VIN
+Added Pin To Net: NetName=VCC Pin=J?-1
+Added Pin To Net: NetName=VCC Pin=R?-1
+Added Pin To Net: NetName=VCC Pin=R?-1
+Added Pin To Net: NetName=VCC Pin=S?-1B
+Added Pin To Net: NetName=VCC Pin=S?-2B
+Added Pin To Net: NetName=VCC Pin=S?-3B
+Added Pin To Net: NetName=VCC Pin=S?-4
+Added Pin To Net: NetName=VCC Pin=S?-4B
+Added Pin To Net: NetName=VCC Pin=S?-5B
+Added Pin To Net: NetName=VCC Pin=S?-6B
+Added Pin To Net: NetName=VCC Pin=S?-7B
+Added Pin To Net: NetName=VCC Pin=U?-1
+Added Pin To Net: NetName=VCC Pin=U?-5
+Added Net: Name=VCC
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B2B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B2B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component R? 1623927-1
+Added Member To Class: ClassName=Sheet1 Member=Component S? DS02-254-2L-07BE
+Added Room: Name=Sheet1

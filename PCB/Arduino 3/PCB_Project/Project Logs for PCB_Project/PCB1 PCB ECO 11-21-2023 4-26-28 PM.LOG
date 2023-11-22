@@ -1,0 +1,30 @@
+Removed Pin From Net: NetName=SCl Pin=A1-SCL
+Removed Pin From Net: NetName=SDA Pin=A1-SDA
+Added Pin To Net: NetName=SCl Pin=A1-43
+Added Pin To Net: NetName=SDA Pin=A1-44
+Added Pin To Net: NetName=GND Pin=J?-1
+Added Pin To Net: NetName=GND Pin=J?-1
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Add Net: Net with name "NetJ?_1" already exists
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B2B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B2B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component J? B4B-XH-A(LF)(SN)
+Added Member To Class: ClassName=Sheet1 Member=Component R? 1623927-1
+Added Member To Class: ClassName=Sheet1 Member=Component S? DS02-254-2L-07BE
+Added Room: Name=Sheet1
