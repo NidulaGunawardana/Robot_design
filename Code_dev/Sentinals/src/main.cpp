@@ -17,22 +17,23 @@ void leftmotor(float speed);
 float line();
 
 void setup() {
+  Serial.begin(9600);
   portFix();
 }
 
 void loop() {
-  // int Kp = 15;
-  // int baseSpeed = 100;
+  int Kp = 4;
+  int baseSpeed = 60;
 
-  // float error = line();
-  // float p = error*Kp;
+  float error = line();
 
-  // float pid = Kp*p;
+  float p = error*Kp;
 
-  // rightmotor(baseSpeed - pid);
-  // leftmotor(baseSpeed + pid);
+  float pid = Kp*p;
 
-  rightmotor(100);
+  rightmotor(baseSpeed - pid);
+  leftmotor(baseSpeed + pid);
+
 }
 
 // Initializing the I/O ports
@@ -58,47 +59,57 @@ void portFix() {
 void rightmotor(float speed){
   digitalWrite(EN1,HIGH);
   if(speed>0){
-    //Clockwise rotation
-    digitalWrite(INB_1,HIGH);
+    //Forward rotation
+    digitalWrite(INB_1,LOW);
+    //Setting speed
+    analogWrite(INA_1,speed);
   }
   else if(speed<0){
-    //Couner-clockwise rotation
-    digitalWrite(INB_1,LOW);
+    //Backward rotation
+    digitalWrite(INB_1,HIGH);
+    //Setting speed
+    analogWrite(INA_1,-speed);
   }
-  //Setting speed
-  analogWrite(INA_1,speed);
+  
 }
 
 // Left motor working 
 void leftmotor(float speed){
   digitalWrite(EN2,HIGH);
   if(speed>0){
-    //Clockwise rotation
+    //Forward rotation
     digitalWrite(INB_2,HIGH);
+    //Setting speed
+    analogWrite(INA_2,speed);
   }
   else if(speed<0){
-    //Couner-clockwise rotation
+    //Backward rotation
     digitalWrite(INB_2,LOW);
+    //Setting speed
+    analogWrite(INA_2,-speed);
   }
-  //Setting speed
-  analogWrite(INA_2,speed);
+  
 }
 
 float line(){
-  int threshold = 45; //White-black analog threshold value
+  int threshold = 50; //White-black analog threshold value
   int sensVals[8]; // List of sensory data
   int k = 0;
   int total = 0;
   int elNum = 0;
 
   for (int j = A0; j <= A7; ++j) {
-    sensVals[k] = (threshold > analogRead(j))*k;
+    sensVals[k] = (threshold < analogRead(j))*k;
     k++;
   }
 
   for (int k=0; k<=7; k++){
     total += sensVals[k];
     elNum += sensVals[k] > 0;
+  }
+
+  if (elNum == 0){
+    elNum = 1;
   }
 
   return total/elNum - 3.5;
