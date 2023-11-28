@@ -20,28 +20,28 @@ void calibrate();
 
 //Sensor calibration data store arrays
 int sensMax[8] = {0,0,0,0,0,0,0,0};
-int sensMin[8] = {0,0,0,0,0,0,0,0};
+int sensMin[8] = {100,100,100,100,100,100,100,100};
 
 void setup() {
-  Serial.begin(9600);
   portFix();
-  calibrate();
+  // digitalWrite(13,LOW);
+  // calibrate();
+  // digitalWrite(13,HIGH);
+  // delay(2000);
 }
 
 void loop() {
 
   // int Kp = 4;
-  // int baseSpeed = 60;
+  int baseSpeed = 50;
 
-  float error = line();
-  Serial.println(error);
-
+  // float error = line();
   // float p = error*Kp;
 
   // float pid = Kp*p;
 
-  // rightmotor(baseSpeed - pid);
-  // leftmotor(baseSpeed + pid);
+  rightmotor(baseSpeed+50);
+  leftmotor(baseSpeed);
 
 }
 
@@ -83,17 +83,18 @@ void rightmotor(float speed){
     speed = -speed;
   }
   //Setting speed
-  speedSet = speed;
-  while (encSpeedright < speed - err_margin || encSpeedright > speed + err_margin){
-    if (encSpeedright < speed){
-      speedSet++;
-    }
-    else{
-      speedSet--;
-    }
-    analogWrite(INA_1,speedSet);
-  }
+  // speedSet = speed;
+  // while (encSpeedright < speed - err_margin || encSpeedright > speed + err_margin){
+  //   if (encSpeedright < speed){
+  //     speedSet++;
+  //   }
+  //   else{
+  //     speedSet--;
+  //   }
+  //   analogWrite(INA_1,speedSet);
+  // }
   
+  analogWrite(INA_1,speed);
   
 }
 
@@ -104,31 +105,33 @@ void leftmotor(float speed){
   digitalWrite(EN2,HIGH);
   if(speed>0){
     //Forward rotation
-    digitalWrite(INB_2,HIGH);
+    digitalWrite(INB_2,LOW);
     speed = speed;
   }
   else if(speed<0){
     //Backward rotation
-    digitalWrite(INB_2,LOW);
+    digitalWrite(INB_2,HIGH);
     speed = -speed;
   }
   //Setting speed
-  speedSet = speed;
-  while (encSpeedleft < speed - err_margin || encSpeedleft > speed + err_margin){
-    if (encSpeedleft < speed){
-      speedSet++;
-    }
-    else{
-      speedSet--;
-    }
-    analogWrite(INA_2,speedSet);
-  }
+  // speedSet = speed;
+  // while (encSpeedleft < speed - err_margin || encSpeedleft > speed + err_margin){
+  //   if (encSpeedleft < speed){
+  //     speedSet++;
+  //   }
+  //   else{
+  //     speedSet--;
+  //   }
+  //   analogWrite(INA_2,speedSet);
+  // }
+
+  analogWrite(INA_2,speed);
   
 }
 
 //Calculating the error of line following
 float line(){
-  int sensVals[8]; // List of sensory data
+  float sensVals[8]; // List of sensory data
   int k = 0;
   int weighted_total = 0;
   int total = 0;
@@ -139,23 +142,19 @@ float line(){
   }
 
   for (int k=0; k<=7; k++){
-    sensVals[k] = map(sensVals[k],sensMin[k],sensMax[k],0,1);
+    sensVals[k] = map(sensVals[k],sensMin[k],sensMax[k],0,1000);
     weighted_total += sensVals[k] * k;
     total += sensVals[k];
   }
 
-  if (total == 0){
-    total = 1;
-  }
-
-  return weighted_total/total - 3.5;
+  return weighted_total/total;
 }
 
 //Calibrating the line following sensors for 5 seconds
 void calibrate(){
-  int l = 0;
 
-  for (int l=0; l<=99; l++)
+  for (int m=0; m<=299; m++){
+    int l = 0;
     for (int j = A0; j <= A7; ++j) {
       if (sensMax[l] < analogRead(j)){
         sensMax[l] = analogRead(j);
@@ -166,5 +165,5 @@ void calibrate(){
       l++;
     }
     delay(50);
-
+  }
 }
