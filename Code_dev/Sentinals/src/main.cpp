@@ -4,12 +4,12 @@
 #define EN1 23
 #define INA_1 4
 #define INB_1 5
-#define encSpeedright
+int encSpeedright;
 //define variable names for driver pins of motor 2 (left)
 #define EN2 24
 #define INA_2 6
 #define INB_2 7
-#define encSpeedleft
+int encSpeedleft;
 
 // function declrarions
 void portFix();
@@ -53,20 +53,24 @@ void portFix() {
     pinMode(i, INPUT);
   }
 
-  //Initializing the Outputs of Motor 1
+  //Initializing the Outputs of Motor 1 (right)
   pinMode(EN1,OUTPUT);
   pinMode(INA_1,OUTPUT);
   pinMode(INB_1,OUTPUT);
 
-  //Initializing the Outputs of Motor 2
+  //Initializing the Outputs of Motor 2 (left)
   pinMode(EN2,OUTPUT);
   pinMode(INA_2,OUTPUT);
   pinMode(INB_2,OUTPUT);
+
+  //Initializig the Outputs of encoders of Motor 1 (right)
+  
 }
 
 // Right motor working 
 void rightmotor(float speed){
   int err_margin = 5;
+  int speedSet;
   digitalWrite(EN1,HIGH);
   if(speed>0){
     //Forward rotation
@@ -79,12 +83,24 @@ void rightmotor(float speed){
     speed = -speed;
   }
   //Setting speed
-  analogWrite(INA_1,speed);
+  speedSet = speed;
+  while (encSpeedright < speed - err_margin || encSpeedright > speed + err_margin){
+    if (encSpeedright < speed){
+      speedSet++;
+    }
+    else{
+      speedSet--;
+    }
+    analogWrite(INA_1,speedSet);
+  }
+  
   
 }
 
 // Left motor working 
 void leftmotor(float speed){
+  int err_margin = 5;
+  int speedSet;
   digitalWrite(EN2,HIGH);
   if(speed>0){
     //Forward rotation
@@ -97,10 +113,20 @@ void leftmotor(float speed){
     speed = -speed;
   }
   //Setting speed
-  analogWrite(INA_2,speed);
+  speedSet = speed;
+  while (encSpeedleft < speed - err_margin || encSpeedleft > speed + err_margin){
+    if (encSpeedleft < speed){
+      speedSet++;
+    }
+    else{
+      speedSet--;
+    }
+    analogWrite(INA_2,speedSet);
+  }
   
 }
 
+//Calculating the error of line following
 float line(){
   int sensVals[8]; // List of sensory data
   int k = 0;
@@ -125,6 +151,7 @@ float line(){
   return weighted_total/total - 3.5;
 }
 
+//Calibrating the line following sensors for 5 seconds
 void calibrate(){
   int l = 0;
 
