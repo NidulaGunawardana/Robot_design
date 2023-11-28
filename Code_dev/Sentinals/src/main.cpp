@@ -1,14 +1,15 @@
 #include <Arduino.h>
 
-//define variable names for driver pins of motor 1
+//define variable names for driver pins of motor 1 (right)
 #define EN1 23
 #define INA_1 4
 #define INB_1 5
-
-//define variable names for driver pins of motor 2
+#define encSpeedright
+//define variable names for driver pins of motor 2 (left)
 #define EN2 24
 #define INA_2 6
 #define INB_2 7
+#define encSpeedleft
 
 // function declrarions
 void portFix();
@@ -22,6 +23,7 @@ void setup() {
 }
 
 void loop() {
+
   int Kp = 4;
   int baseSpeed = 60;
 
@@ -57,18 +59,19 @@ void portFix() {
 
 // Right motor working 
 void rightmotor(float speed){
+  int err_margin = 5;
   digitalWrite(EN1,HIGH);
   if(speed>0){
     //Forward rotation
     digitalWrite(INB_1,LOW);
     //Setting speed
-    analogWrite(INA_1,speed);
+    speed = speed;
   }
   else if(speed<0){
     //Backward rotation
     digitalWrite(INB_1,HIGH);
     //Setting speed
-    analogWrite(INA_1,-speed);
+    speed = -speed;
   }
   
 }
