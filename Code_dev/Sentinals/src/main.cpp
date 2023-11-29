@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "../lib/motordriver.h"
+#include <motordriver.h>
 
 // define variable names for driver pins of motor 1 (right)
 #define EN1 23
@@ -18,6 +18,7 @@ void rightmotor(float speed);
 void leftmotor(float speed);
 float line();
 void calibrate();
+
 
 // Sensor calibration data store arrays
 int sensMax[8] = {0, 0, 0, 0, 0, 0, 0, 0};
@@ -160,21 +161,21 @@ void loop()
 // //Calibrating the line following sensors for 5 seconds
 // void calibrate(){
 
-for (int m = 0; m <= 299; m++)
-{
-  int l = 0;
-  for (int j = A0; j <= A7; ++j)
-  {
-    if (sensMax[l] < analogRead(j))
-    {
-      sensMax[l] = analogRead(j);
-    }
-    if (sensMin[l] > analogRead(j))
-    {
-      sensMin[l] = analogRead(j);
-    }
-    l++;
-  }
-  delay(50);
-}
-}
+// for (int m = 0; m <= 299; m++)
+// {
+//   int l = 0;
+//   for (int j = A0; j <= A7; ++j)
+//   {
+//     if (sensMax[l] < analogRead(j))
+//     {
+//       sensMax[l] = analogRead(j);
+//     }
+//     if (sensMin[l] > analogRead(j))
+//     {
+//       sensMin[l] = analogRead(j);
+//     }
+//     l++;
+//   }
+//   delay(50);
+// }
+// }

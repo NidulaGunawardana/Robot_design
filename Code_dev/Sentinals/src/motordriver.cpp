@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include "motordriver.h"
 
 int INA;
 int INB;
@@ -60,7 +60,7 @@ float getSpeed()
 
 void setSpeed(int speedToSet,int motor,int dir,int side)
 {
-    speed = speedSet;
+    int speed = speedSet;
     float now_speed = getSpeed();
     float error = speed - now_speed;
     analogWrite(motor, speed + error);
