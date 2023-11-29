@@ -27,55 +27,44 @@ float speedSet1;
 // function declrarions
 
 // Sensor calibration data store arrays
-int sensMax[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-int sensMin[8] = {100, 100, 100, 100, 100, 100, 100, 100};
+int sensMax[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+int sensMin[8] = { 100, 100, 100, 100, 100, 100, 100, 100 };
 
 // Motordriver motor1 = Motordriver();
 
-void readEncoder1()
-{
+void readEncoder1() {
   int b = digitalRead(ENCB_1);
-  if (b > 0)
-  {
+  if (b > 0) {
     pos1++;
-  }
-  else
-  {
+  } else {
     pos1--;
   }
 }
 
-void readEncoder2()
-{
+void readEncoder2() {
   int b = digitalRead(ENCB_2);
-  if (b > 0)
-  {
+  if (b > 0) {
     pos2++;
-  }
-  else
-  {
+  } else {
     pos2--;
   }
 }
 
-float getSpeed1()
-{
+float getSpeed1() {
   int moving_avg1 = 0;
-  for (int i = 0; i < 5; i++)
-  {
+  for (int i = 0; i < 5; i++) {
     moving_avg1 += (pos1 - prev_pos1);
     prev_pos1 = pos1;
     delay(10);
   }
+
   moving_avg1 = map(moving_avg1, 0, 100, 0, 255);
   return moving_avg1;
 }
 
-float getSpeed2()
-{
+float getSpeed2() {
   int moving_avg2 = 0;
-  for (int i = 0; i < 5; i++)
-  {
+  for (int i = 0; i < 5; i++) {
     moving_avg2 += (pos2 - prev_pos2);
     prev_pos2 = pos2;
     delay(10);
@@ -84,34 +73,31 @@ float getSpeed2()
   return moving_avg2;
 }
 
-void setSpeed1(int speedToSet, int motor, int dir, int side)
-{
+void setSpeed1(int speedToSet, int motor, int dir, int side) {
   int speed = speedToSet;
   float now_speed = getSpeed1();
   float error = speed - now_speed;
-  digitalWrite(EN1,HIGH);
+  digitalWrite(EN1, HIGH);
   analogWrite(motor, speed + error);
   digitalWrite(dir, side);
-  
 
-  Serial.println((String)now_speed + " " + (String)speed + " " + (String)error);
+
+  Serial.print((String)now_speed + " " + (String)speed + " " + (String)error + " ");
 }
 
-void setSpeed2(int speedToSet, int motor, int dir, int side)
-{
+void setSpeed2(int speedToSet, int motor, int dir, int side) {
   int speed = speedToSet;
   float now_speed = getSpeed2();
   float error = speed - now_speed;
-  digitalWrite(EN2,HIGH);
+  digitalWrite(EN2, HIGH);
   analogWrite(motor, speed + error);
   digitalWrite(dir, side);
-  
+
 
   Serial.println((String)now_speed + " " + (String)speed + " " + (String)error);
 }
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
   pinMode(INA_1, OUTPUT);
   pinMode(INB_1, OUTPUT);
@@ -134,8 +120,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENCA_2), readEncoder2, RISING);
 }
 
-void loop()
-{
+void loop() {
 
   int speedRRead = map(analogRead(A8), 0, 1023, 0, 100);
 
