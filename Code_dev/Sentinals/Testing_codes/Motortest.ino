@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #define ENCA 18 // Yellow
 #define ENCB 19 // White
 #define EN1 24
