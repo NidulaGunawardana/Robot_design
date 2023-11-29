@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <motordriver.h>
+#include "motordriver.h"
 
 // define variable names for driver pins of motor 1 (right)
 #define EN1 23
@@ -19,7 +19,6 @@ void leftmotor(float speed);
 float line();
 void calibrate();
 
-
 // Sensor calibration data store arrays
 int sensMax[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 int sensMin[8] = {100, 100, 100, 100, 100, 100, 100, 100};
@@ -31,8 +30,11 @@ void setup()
   // calibrate();
   // digitalWrite(13,HIGH);
   // delay(2000);
+  Serial.println("Setup");
   pinSetup(INA_1, INB_1, EN1, 2, 3);
+  Serial.println("Setup 1");
   pinSetup(INA_2, INB_2, EN2, 18, 19);
+  Serial.println("Setup 2");
 }
 
 void loop()

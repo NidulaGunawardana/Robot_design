@@ -18,6 +18,7 @@ void pinSetup(int INA_1, int INB_1, int EN_1, int ENCA_1, int ENCB_1)
     EN = EN_1;
     ENCA = ENCA_1;
     ENCB = ENCB_1;
+    Serial.println("Setup Started");
 
     pinMode(INA, OUTPUT);
     pinMode(INB, OUTPUT);
@@ -30,6 +31,7 @@ void pinSetup(int INA_1, int INB_1, int EN_1, int ENCA_1, int ENCB_1)
     digitalWrite(INB, HIGH);
 
     attachInterrupt(digitalPinToInterrupt(ENCA), readEncoder, RISING);
+    Serial.println("Setup Done");
 }
 
 void readEncoder()
