@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <motor.h>
 
 //define variable names for driver pins of motor 1 (right)
 #define EN1 23
