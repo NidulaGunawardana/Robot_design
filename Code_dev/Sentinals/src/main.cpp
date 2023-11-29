@@ -1,183 +1,117 @@
 #include <Arduino.h>
-#include "motordriver.h"
+#include "Motordriver.h"
 
 // define variable names for driver pins of motor 1 (right)
 #define EN1 23
 #define INA_1 4
 #define INB_1 5
+#define ENCA_1 2
+#define ENCB_1 3
 int encSpeedright;
 // define variable names for driver pins of motor 2 (left)
 #define EN2 24
 #define INA_2 6
 #define INB_2 7
+#define ENCA_2 18
+#define ENCB_2 19
 int encSpeedleft;
 
+int pos1 = 0;
+int pos2 = 0;
+int prev_pos = 0;
+float moving_avg;
+float speedSet;
+
 // function declrarions
-void portFix();
-void rightmotor(float speed);
-void leftmotor(float speed);
-float line();
-void calibrate();
 
 // Sensor calibration data store arrays
 int sensMax[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 int sensMin[8] = {100, 100, 100, 100, 100, 100, 100, 100};
 
+Motordriver motor1 = Motordriver();
+
 void setup()
 {
-  // portFix();
-  // digitalWrite(13,LOW);
-  // calibrate();
-  // digitalWrite(13,HIGH);
-  // delay(2000);
-  Serial.println("Setup");
-  pinSetup(INA_1, INB_1, EN1, 2, 3);
-  Serial.println("Setup 1");
-  pinSetup(INA_2, INB_2, EN2, 18, 19);
-  Serial.println("Setup 2");
+  Serial.begin(9600);
+  pinMode(INA_1, OUTPUT);
+  pinMode(INB_1, OUTPUT);
+  pinMode(EN1, OUTPUT);
+  pinMode(ENCA_1, INPUT);
+  pinMode(ENCB_1, INPUT);
+  pinMode(INA_2, OUTPUT);
+  pinMode(INB_2, OUTPUT);
+  pinMode(EN2, OUTPUT);
+  pinMode(ENCA_2, INPUT);
+  pinMode(ENCB_2, INPUT);
+  pinMode(A8, INPUT);
+  // Serial.println("Setup");
+  // pinSetup(INA_1, INB_1, EN1, ENCA_1, ENCB_1);
+  // Serial.println("Setup 1");
+  // pinSetup(INA_2, INB_2, EN2, ENCA_2, ENCB_2);
+  // Serial.println("Setup 2");
+  motor1.setPin(ENCA_1);
+  attachInterrupt(digitalPinToInterrupt(ENCA_1), motor1.readEncoder, RISING);
+  // attachInterrupt(digitalPinToInterrupt(ENCA_2), readEncoder2, RISING);
 }
 
 void loop()
 {
 
-  setSpeed(70, INA_1, INB_1, HIGH);
-  setSpeed(70, INA_2, INB_2, HIGH);
+  int speedRRead = map(analogRead(A8), 0, 1024, 0, 90);
 
-  // int Kp = 4;
-  // int baseSpeed = 50;
-
-  // float error = line();
-  // float p = error*Kp;
-
-  // float pid = Kp*p;
-
-  // rightmotor(baseSpeed+50);
-  // leftmotor(baseSpeed);
+  motor1.setSpeed(speedRRead, INA_1, INB_1, HIGH);
+  // setSpeed(speedRRead, INA_2, INB_2, HIGH);
+  // Serial.println(speedRRead);
 }
 
-// // Initializing the I/O ports
-// void portFix() {
-
-//   // Initializing the Inputs of the line following sensor panel
-//   for (int i = A0; i <= A7; ++i) {
-//     pinMode(i, INPUT);
-//   }
-
-//   //Initializing the Outputs of Motor 1 (right)
-//   pinMode(EN1,OUTPUT);
-//   pinMode(INA_1,OUTPUT);
-//   pinMode(INB_1,OUTPUT);
-
-//   //Initializing the Outputs of Motor 2 (left)
-//   pinMode(EN2,OUTPUT);
-//   pinMode(INA_2,OUTPUT);
-//   pinMode(INB_2,OUTPUT);
-
-//   //Initializig the Outputs of encoders of Motor 1 (right)
-
-// }
-
-// // Right motor working
-// void rightmotor(float speed){
-//   int err_margin = 5;
-//   int speedSet;
-//   digitalWrite(EN1,HIGH);
-//   if(speed>0){
-//     //Forward rotation
-//     digitalWrite(INB_1,LOW);
-//     speed = speed;
-//   }
-//   else if(speed<0){
-//     //Backward rotation
-//     digitalWrite(INB_1,HIGH);
-//     speed = -speed;
-//   }
-//   //Setting speed
-//   // speedSet = speed;
-//   // while (encSpeedright < speed - err_margin || encSpeedright > speed + err_margin){
-//   //   if (encSpeedright < speed){
-//   //     speedSet++;
-//   //   }
-//   //   else{
-//   //     speedSet--;
-//   //   }
-//   //   analogWrite(INA_1,speedSet);
-//   // }
-
-//   analogWrite(INA_1,speed);
-
-// }
-
-// // Left motor working
-// void leftmotor(float speed){
-//   int err_margin = 5;
-//   int speedSet;
-//   digitalWrite(EN2,HIGH);
-//   if(speed>0){
-//     //Forward rotation
-//     digitalWrite(INB_2,LOW);
-//     speed = speed;
-//   }
-//   else if(speed<0){
-//     //Backward rotation
-//     digitalWrite(INB_2,HIGH);
-//     speed = -speed;
-//   }
-//   //Setting speed
-//   // speedSet = speed;
-//   // while (encSpeedleft < speed - err_margin || encSpeedleft > speed + err_margin){
-//   //   if (encSpeedleft < speed){
-//   //     speedSet++;
-//   //   }
-//   //   else{
-//   //     speedSet--;
-//   //   }
-//   //   analogWrite(INA_2,speedSet);
-//   // }
-
-//   analogWrite(INA_2,speed);
-
-// }
-
-// //Calculating the error of line following
-// float line(){
-//   float sensVals[8]; // List of sensory data
-//   int k = 0;
-//   int weighted_total = 0;
-//   int total = 0;
-
-//   for (int j = A0; j <= A7; ++j) {
-//     sensVals[k] = analogRead(j);
-//     k++;
-//   }
-
-//   for (int k=0; k<=7; k++){
-//     sensVals[k] = map(sensVals[k],sensMin[k],sensMax[k],0,1000);
-//     weighted_total += sensVals[k] * k;
-//     total += sensVals[k];
-//   }
-
-//   return weighted_total/total;
-// }
-
-// //Calibrating the line following sensors for 5 seconds
-// void calibrate(){
-
-// for (int m = 0; m <= 299; m++)
+// void readEncoder1()
 // {
-//   int l = 0;
-//   for (int j = A0; j <= A7; ++j)
+//   int b = digitalRead(ENCB);
+//   if (b > 0)
 //   {
-//     if (sensMax[l] < analogRead(j))
-//     {
-//       sensMax[l] = analogRead(j);
-//     }
-//     if (sensMin[l] > analogRead(j))
-//     {
-//       sensMin[l] = analogRead(j);
-//     }
-//     l++;
+//     pos1++;
 //   }
-//   delay(50);
+//   else
+//   {
+//     pos1--;
+//   }
 // }
+
+// void readEncoder2()
+// {
+//   int b = digitalRead(ENCB);
+//   if (b > 0)
+//   {
+//     pos2++;
+//   }
+//   else
+//   {
+//     pos2--;
+//   }
+// }
+
+// float getSpeed(int pos)
+// {
+//    int moving_avg = 0;
+//     for (int i = 0; i < 5; i++)
+//     {
+//         moving_avg += (pos - prev_pos);
+//         prev_pos = pos;
+//         delay(10);
+//     }
+//     moving_avg = map(moving_avg, 0, 100, 0, 255);
+//     return moving_avg;
+// }
+
+// float getSpeed(int pos)
+// {
+//    int moving_avg = 0;
+//     for (int i = 0; i < 5; i++)
+//     {
+//         moving_avg += (pos - prev_pos);
+//         prev_pos = pos;
+//         delay(10);
+//     }
+//     moving_avg = map(moving_avg, 0, 100, 0, 255);
+//     return moving_avg;
 // }
