@@ -89,8 +89,10 @@ void setSpeed1(int speedToSet, int motor, int dir, int side)
   int speed = speedToSet;
   float now_speed = getSpeed1();
   float error = speed - now_speed;
+  digitalWrite(EN1,HIGH);
   analogWrite(motor, speed + error);
   digitalWrite(dir, side);
+  
 
   Serial.println((String)now_speed + " " + (String)speed + " " + (String)error);
 }
@@ -100,8 +102,10 @@ void setSpeed2(int speedToSet, int motor, int dir, int side)
   int speed = speedToSet;
   float now_speed = getSpeed2();
   float error = speed - now_speed;
+  digitalWrite(EN2,HIGH);
   analogWrite(motor, speed + error);
   digitalWrite(dir, side);
+  
 
   Serial.println((String)now_speed + " " + (String)speed + " " + (String)error);
 }
@@ -133,7 +137,7 @@ void setup()
 void loop()
 {
 
-  int speedRRead = map(analogRead(A8), 0, 1023, 0, 90);
+  int speedRRead = map(analogRead(A8), 0, 1023, 0, 100);
 
   setSpeed1(speedRRead, INA_1, INB_1, HIGH);
   setSpeed2(speedRRead, INA_2, INB_2, HIGH);
