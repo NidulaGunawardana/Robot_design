@@ -5,10 +5,13 @@
 #define EN1 24
 #define INA_1 6
 #define INB_1 7
+
 int pos = 0;
 int prev_pos = 0;
 float moving_avg;
 float speedSet;
+
+float getSpeed();
 
 void setup() {
   // put your setup code here, to run once:
@@ -30,17 +33,14 @@ attachInterrupt(digitalPinToInterrupt(ENCA),readEncoder,RISING);
 void loop() {
   // put your main code here, to run repeatedly:
   
-  int speed = map(analogRead(8),0,1023,0,255);
-  analogWrite(INA_1,speed);
+  int speed = 60;
+  float now_speed = getSpeed();
+  float error = speed - now_speed;
 
-  moving_avg = 0;
-  for (int i=0;i<5;i++){
-    moving_avg += (pos - prev_pos);
-    prev_pos = pos;
-    delay(10);
-  }
   
-  Serial.println((String)moving_avg + " " + (String)speed);
+  analogWrite(INA_1,speed + error);
+
+  Serial.println((String)now_speed + " " + (String)speed);
 }
 
 void readEncoder(){
@@ -51,4 +51,15 @@ void readEncoder(){
   else{
     pos--;
   }
+}
+
+float getSpeed(){
+  moving_avg = 0;
+  for (int i=0;i<5;i++){
+    moving_avg += (pos - prev_pos);
+    prev_pos = pos;
+    delay(10);
+  }
+  moving_avg = map(moving_avg,0,100,0,255);
+  return moving_avg;
 }

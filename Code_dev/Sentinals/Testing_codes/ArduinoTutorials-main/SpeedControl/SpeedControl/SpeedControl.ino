@@ -3,9 +3,9 @@
 // Pins
 #define ENCA 2
 #define ENCB 3
-#define PWM 5
-#define IN1 6
-#define IN2 7
+#define PWM 4
+#define IN1 23
+#define IN2 5
 
 // globals
 long prevT = 0;
@@ -65,7 +65,7 @@ void loop() {
   v2Prev = v2;
 
   // Set a target
-  float vt = 100*(sin(currT/1e6)>0);
+  float vt = 3;
 
   // Compute the control signal u
   float kp = 5;
@@ -102,7 +102,7 @@ void setMotor(int dir, int pwmVal, int pwm, int in1, int in2){
   }
   else if(dir == -1){
     // Turn the other way
-    digitalWrite(in1,LOW);
+    digitalWrite(in1,HIGH);
     digitalWrite(in2,HIGH);
   }
   else{
