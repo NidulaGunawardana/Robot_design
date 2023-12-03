@@ -2,10 +2,7 @@
 #define LINE_FOLLOWING
 #include <Arduino.h>
 #include "line_following.h"
-#include "line_following.h"
 
-
-void portFix();
 void portFix();
 void rightmotor(float speed);
 void leftmotor(float speed);
