@@ -5,7 +5,7 @@
 //Initiating the sensor panel
 BeeLineSensorPro sensor = BeeLineSensorPro((unsigned char[]) {
   A0, A1, A2, A3, A4, A5, A6, A7
-}, LINE_WHITE);
+}, LINE_BLACK); // Need to change to LINE_WHITE
 
 //define variable names for driver pins of motor 1 (right)
 #define EN1 23
@@ -35,7 +35,7 @@ BeeLineSensorPro sensor = BeeLineSensorPro((unsigned char[]) {
 float last_error = 0;
 int allBlackFlag = 0;
 
-int z = 0; // 1 for black line follow, 0 for white line follow
+int z = 1; // 1 for black line follow, 0 for white line follow
 
 // void setup() {
 //   portFix(); // Initializing the ports
@@ -82,12 +82,12 @@ void rightmotor(float speed){
   digitalWrite(EN1,HIGH);
   if(speed>0){
     //Forward rotation
-    digitalWrite(INB_1,LOW);
+    digitalWrite(INB_1,HIGH);
     speed = speed;
   }
   else if(speed<0){
     //Backward rotation
-    digitalWrite(INB_1,HIGH);
+    digitalWrite(INB_1,LOW);
     speed = -speed;
   } 
   
@@ -100,12 +100,12 @@ void leftmotor(float speed){
   digitalWrite(EN2,HIGH);
   if(speed>0){
     //Forward rotation
-    digitalWrite(INB_2,HIGH);
+    digitalWrite(INB_2,LOW);
     speed = speed;
   }
   else if(speed<0){
     //Backward rotation
-    digitalWrite(INB_2,LOW);
+    digitalWrite(INB_2,HIGH);
     speed = -speed;
   }
 
@@ -117,8 +117,8 @@ void rightTurn(){
   leftmotor(65);
   rightmotor(90);
   delay(400);
-  leftmotor(80);
-  rightmotor(-80);
+  leftmotor(-80);
+  rightmotor(80);
   delay(770);
   leftmotor(0);
   rightmotor(0);
@@ -130,8 +130,8 @@ void leftTurn(){
   leftmotor(65);
   rightmotor(90);
   delay(400);
-  leftmotor(-80);
-  rightmotor(80);
+  leftmotor(80);
+  rightmotor(-80);
   delay(770);
   leftmotor(0);
   rightmotor(0);
@@ -176,7 +176,7 @@ void linefollow(){
     delay(300);
     allBlackFlag++;
   }
-  else if ((left1 == z && left2 == z) && (right1 == 1-z && right2 == 1-z)){ //detection of the 90 degree junction to the left
+  else if ((left1 == z && left2 == z) && (right1 == z-1 && right2 == z-1)){ //detection of the 90 degree junction to the left
     rightmotor(90);
     leftmotor(65);
     delay(300);
@@ -192,7 +192,7 @@ void linefollow(){
     
     }
   }
-  else if ((left1 == 1-z && left2 == 1-z) && (right1 == z && right2 == z)){ //detection of the 90 degree junction to the right 
+  else if ((left1 == z-1 && left2 == z-1) && (right1 == z && right2 == z)){ //detection of the 90 degree junction to the right 
     rightmotor(90);
     leftmotor(65);
     delay(300);
@@ -210,7 +210,7 @@ void linefollow(){
 
     //line following is implemented
     float Kp;
-    float Kd = 0.0252;
+    float Kd = 0.03; // 0.0252
     float err_avg = 0;
 
     for (int i = 0; i<5; i++){ //Average error is calculated
@@ -219,8 +219,8 @@ void linefollow(){
     }
     err_avg = err_avg/5;
 
-    //Kp is set on an exponential graph
-    Kp = 0.04;
+    //Kp is set
+    Kp = 0.05; // 0.04
     
     int baseSpeed = 75; //Setting the base speed
 
