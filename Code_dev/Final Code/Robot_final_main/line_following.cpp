@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "line_following.h"
+#include "BeeLineSensorPro.h"
 
 //Initiating the sensor panel
 BeeLineSensorPro sensor = BeeLineSensorPro((unsigned char[]) {
