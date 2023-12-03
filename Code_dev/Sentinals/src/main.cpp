@@ -1,141 +1,238 @@
 #include <Arduino.h>
-// #include "Motordriver.h"
+#include <BeeLineSensorPro.h>
 
-// define variable names for driver pins of motor 1 (right)
+//Initiating the sensor panel
+BeeLineSensorPro sensor = BeeLineSensorPro((unsigned char[]) {
+  A0, A1, A2, A3, A4, A5, A6, A7
+}, LINE_BLACK);
+
+//define variable names for driver pins of motor 1 (right)
 #define EN1 23
 #define INA_1 4
 #define INB_1 5
-#define ENCA_1 2
-#define ENCB_1 3
-int encSpeedright;
-// define variable names for driver pins of motor 2 (left)
+
+//define variable names for driver pins of motor 2 (left)
 #define EN2 24
 #define INA_2 6
 #define INB_2 7
-#define ENCA_2 18
-#define ENCB_2 19
-int encSpeedleft;
 
-int pos1 = 0;
-int pos2 = 0;
-int prev_pos1 = 0;
-float moving_avg1;
-int prev_pos2 = 0;
-float moving_avg2;
-float speedSet1;
+//define variable names for the junction detection sensors
+#define rightSensor1 8
+#define rightSensor2 9
+#define leftSensor2 10
+#define leftSensor1 11
 
 // function declrarions
+void portFix();
+void rightmotor(float speed);
+void leftmotor(float speed);
+void leftTurn();
+void rightTurn();
 
-// Sensor calibration data store arrays
-int sensMax[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-int sensMin[8] = {100, 100, 100, 100, 100, 100, 100, 100};
+//defining global variables
+float last_error = 0;
+int allBlackFlag = 0;
 
-// Motordriver motor1 = Motordriver();
+int z = 1; // 1 for black line follow, 0 for white line follow
 
-void readEncoder1()
-{
-  int b = digitalRead(ENCB_1);
-  if (b > 0)
-  {
-    pos1++;
+void setup() {
+  Serial.begin(115200);
+  portFix();
+  
+  //calibrating the sensor panel
+  rightmotor(200);
+  leftmotor(-200);
+  for (int i = 0; i<300; i++){
+    sensor.calibrate();
+    delay(5);
   }
-  else
+  rightmotor(0);
+  leftmotor(0);
+
+  //delay is set to give time to place the robot in the starting square
+  delay(7000);
+}
+
+void loop() {
+
+  //give sensor reading output as 1 for black color
+  int left1 = digitalRead(leftSensor1);
+  int left2 = digitalRead(leftSensor2);
+  int right1 = digitalRead(rightSensor1);
+  int right2 = digitalRead(rightSensor2);
+  
+  if (allBlackFlag == 0){ //defining the starting position
+    rightmotor(90);
+    leftmotor(65);
+    delay(500);
+    allBlackFlag++;
+  }
+  else if (allBlackFlag >=2){ //defining the ending position
+    delay(500);
+    rightmotor(0);
+    leftmotor(0); 
+  }
+  else if (right1 == z && right2 == z && left1 == z && left2 == z) //detection of a straight line junction
   {
-    pos1--;
+    rightmotor(90);
+    leftmotor(65);
+    delay(300);
+    allBlackFlag++;
+  }
+  else if ((left1 == z && left2 == z) && (right1 == z-1 && right2 == z-1)){ //detection of the 90 degree junction to the left
+    rightmotor(90);
+    leftmotor(65);
+    delay(300);
+    if (right1 == z && right2 == z && left1 == z && left2 == z) // checking whether detected junction is a straight line junction
+    {
+      rightmotor(90);
+      leftmotor(65);
+      delay(100);
+      allBlackFlag++;
+    }
+    else {
+      leftTurn();
+    
+    }
+  }
+  else if ((left1 == z-1 && left2 == z-1) && (right1 == z && right2 == z)){ //detection of the 90 degree junction to the right 
+    rightmotor(90);
+    leftmotor(65);
+    delay(300);
+    if (right1 == z && right2 == z && left1 == z && left2 == z){ //checking whether the detected junction is a straight line junction
+      rightmotor(90);
+      leftmotor(65);
+      delay(100);
+      allBlackFlag++;
+    }
+    else{
+      rightTurn();
+    }
+  }
+  else {
+
+    //line following is implemented
+    float Kp;
+    float Kd = 0.03;
+    float err_avg = 0;
+
+    for (int i = 0; i<20; i++){ //Average error is calculated
+      err_avg += sensor.readSensor();
+      delay(1);
+    }
+    err_avg = err_avg/20;
+
+    //Kp is set on an exponential graph
+    if (abs(err_avg) < 40){
+      Kp = 0.04;
+    }
+    else if (abs(err_avg) < 80){
+      Kp = 0.046;
+    }
+    else{
+      Kp = 0.048;
+    }
+    
+    int baseSpeed = 65; //Setting the base speed
+
+    float pid = Kp*err_avg + Kd*(err_avg - last_error); //Calculating the PID value
+
+    last_error = err_avg;
+
+    //Setting the speeds to the motor
+    rightmotor(baseSpeed+pid+15);
+    leftmotor(baseSpeed-pid);
+
+    //Serial.println(err_avg);
+    
+    delay(2);
   }
 }
 
-void readEncoder2()
-{
-  int b = digitalRead(ENCB_2);
-  if (b > 0)
-  {
-    pos2++;
+
+// Initializing the I/O ports
+void portFix() {
+
+  // Initializing the Inputs of the line following sensor panel
+  for (int i = A0; i <= A7; ++i) {
+    pinMode(i, INPUT);
   }
-  else
-  {
-    pos2--;
+
+  //Initializing the Outputs of Motor 1 (right)
+  pinMode(EN1,OUTPUT);
+  pinMode(INA_1,OUTPUT);
+  pinMode(INB_1,OUTPUT);
+
+  //Initializing the Outputs of Motor 2 (left)
+  pinMode(EN2,OUTPUT);
+  pinMode(INA_2,OUTPUT);
+  pinMode(INB_2,OUTPUT);
+
+  //Initializing the junction detection sensors
+  pinMode(rightSensor1, INPUT);
+  pinMode(rightSensor2, INPUT);
+  pinMode(leftSensor1, INPUT);
+  pinMode(leftSensor2, INPUT);
+}
+
+// Right motor working 
+void rightmotor(float speed){
+  digitalWrite(EN1,HIGH);
+  if(speed>0){
+    //Forward rotation
+    digitalWrite(INB_1,LOW);
+    speed = speed;
   }
+  else if(speed<0){
+    //Backward rotation
+    digitalWrite(INB_1,HIGH);
+    speed = -speed;
+  } 
+  
+  analogWrite(INA_1,speed);
+
 }
 
-float getSpeed1()
-{
-  int moving_avg1 = 0;
-  for (int i = 0; i < 5; i++)
-  {
-    moving_avg1 += (pos1 - prev_pos1);
-    prev_pos1 = pos1;
-    delay(10);
+// Left motor working 
+void leftmotor(float speed){
+  digitalWrite(EN2,HIGH);
+  if(speed>0){
+    //Forward rotation
+    digitalWrite(INB_2,HIGH);
+    speed = speed;
   }
-  moving_avg1 = map(moving_avg1, 0, 100, 0, 255);
-  return moving_avg1;
-}
-
-float getSpeed2()
-{
-  int moving_avg2 = 0;
-  for (int i = 0; i < 5; i++)
-  {
-    moving_avg2 += (pos2 - prev_pos2);
-    prev_pos2 = pos2;
-    delay(10);
+  else if(speed<0){
+    //Backward rotation
+    digitalWrite(INB_2,LOW);
+    speed = -speed;
   }
-  moving_avg2 = map(moving_avg2, 0, 100, 0, 255);
-  return moving_avg2;
+
+  analogWrite(INA_2,speed);
+  
 }
 
-void setSpeed1(int speedToSet, int motor, int dir, int side)
-{
-  int speed = speedToSet;
-  float now_speed = getSpeed1();
-  float error = speed - now_speed;
-  analogWrite(motor, speed + error);
-  digitalWrite(dir, side);
-
-  Serial.println((String)now_speed + " " + (String)speed + " " + (String)error);
+void rightTurn(){
+  leftmotor(65);
+  rightmotor(90);
+  delay(400);
+  leftmotor(80);
+  rightmotor(-80);
+  delay(750);
+  leftmotor(0);
+  rightmotor(0);
+  delay(40);
 }
 
-void setSpeed2(int speedToSet, int motor, int dir, int side)
-{
-  int speed = speedToSet;
-  float now_speed = getSpeed2();
-  float error = speed - now_speed;
-  analogWrite(motor, speed + error);
-  digitalWrite(dir, side);
+void leftTurn(){
 
-  Serial.println((String)now_speed + " " + (String)speed + " " + (String)error);
-}
+  leftmotor(65);
+  rightmotor(90);
+  delay(400);
+  leftmotor(-80);
+  rightmotor(80);
+  delay(750);
+  leftmotor(0);
+  rightmotor(0);
+  delay(40);
 
-void setup()
-{
-  Serial.begin(9600);
-  pinMode(INA_1, OUTPUT);
-  pinMode(INB_1, OUTPUT);
-  pinMode(EN1, OUTPUT);
-  pinMode(ENCA_1, INPUT);
-  pinMode(ENCB_1, INPUT);
-  pinMode(INA_2, OUTPUT);
-  pinMode(INB_2, OUTPUT);
-  pinMode(EN2, OUTPUT);
-  pinMode(ENCA_2, INPUT);
-  pinMode(ENCB_2, INPUT);
-  pinMode(A8, INPUT);
-  // Serial.println("Setup");
-  // pinSetup(INA_1, INB_1, EN1, ENCA_1, ENCB_1);
-  // Serial.println("Setup 1");
-  // pinSetup(INA_2, INB_2, EN2, ENCA_2, ENCB_2);
-  // Serial.println("Setup 2");
-  // motor1.setPin(ENCA_1);
-  attachInterrupt(digitalPinToInterrupt(ENCA_1), readEncoder1, RISING);
-  attachInterrupt(digitalPinToInterrupt(ENCA_2), readEncoder2, RISING);
-}
-
-void loop()
-{
-
-  int speedRRead = map(analogRead(A8), 0, 1023, 0, 90);
-
-  setSpeed1(speedRRead, INA_1, INB_1, HIGH);
-  setSpeed2(speedRRead, INA_2, INB_2, HIGH);
-  // Serial.println(speedRRead);
 }
