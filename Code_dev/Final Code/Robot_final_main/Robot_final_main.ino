@@ -12,8 +12,11 @@ bool lineFollowing = false;
 
 void setup() {
   disp.begin(9600);
+  disp.writeStr("t0.txt", "Please Wait...");
   setID();
   portFix();
+  disp.writeStr("t0.txt", "Calibrate to begin");
+  
 }
 
 void loop() {
@@ -96,8 +99,10 @@ void trigger4() {
 void trigger5() {
   measureDistance = false;
   lineFollowing = false;
+  disp.writeStr("t0.txt", "Calibrating...");
   calibrate();
   delay(7000);
+  disp.writeStr("t0.txt", "Calibration Done.");
 }
 
 // Home button
