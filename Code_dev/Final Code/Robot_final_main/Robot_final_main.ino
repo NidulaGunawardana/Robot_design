@@ -1,6 +1,7 @@
 #include <EasyNextionLibrary.h>
 #include "distance.h"
 #include "line_following.h"
+#include "wall_following.h"
 EasyNex disp = EasyNex(Serial);
 
 float speed = 62;
@@ -22,7 +23,7 @@ void setup() {
 void loop() {
   disp.NextionListen();
   if (measureDistance == true) {
-    disp.writeStr("t0.txt", (String)sensor_1());
+    wall_follow(100);
   }
   if (lineFollowing == true) {
     linefollow();
