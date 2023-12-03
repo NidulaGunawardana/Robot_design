@@ -8,7 +8,6 @@ float kp = 0.041;
 float kd = 0.1;
 bool measureDistance = false;
 
-
 void setup() {
   disp.begin(9600);
   setID();
@@ -122,3 +121,4 @@ void trigger12() {
 void trigger13() {
 measureDistance = false;
 }
+
