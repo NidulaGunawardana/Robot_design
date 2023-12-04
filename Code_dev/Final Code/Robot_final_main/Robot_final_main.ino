@@ -168,5 +168,7 @@ void trigger12() {
 void trigger13() {
   measureDistance = false;
   lineFollowing = false;
+  rightmotor(0);
+  leftmotor(0);
 }
 
