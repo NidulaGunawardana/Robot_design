@@ -7,6 +7,6 @@ void wall_follow(float distance){
   float Kp = 1;
   float error = sensor_1() - distance;
   float pid = Kp*error;
-  leftmotor(baseSpeed+pid);
-  rightmotor(baseSpeed+20-pid);
+  leftmotor(baseSpeed-pid);
+  rightmotor(baseSpeed+20+pid);
 }
