@@ -23,7 +23,12 @@ void setup() {
 void loop() {
   disp.NextionListen();
   if (measureDistance == true) {
-    wall_follow(150);
+    if (sensor_1() <= 150){
+      wall_follow(100);
+    }
+    else{
+      linefollow();
+    }     
   }
   if (lineFollowing == true) {
     linefollow();

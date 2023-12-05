@@ -75,6 +75,8 @@ void portFix() {
   pinMode(rightSensor2, INPUT);
   pinMode(leftSensor1, INPUT);
   pinMode(leftSensor2, INPUT);
+
+  
 }
 
 // Right motor working 
@@ -164,11 +166,11 @@ void linefollow(){
     delay(500);
     allBlackFlag++;
   }
-  else if (allBlackFlag >=2){ //defining the ending position
-    delay(500);
-    rightmotor(0);
-    leftmotor(0); 
-  }
+  // else if (allBlackFlag >=2){ //defining the ending position
+  //   delay(500);
+  //   rightmotor(0);
+  //   leftmotor(0); 
+  // }
   else if (right1 == z && right2 == z && left1 == z && left2 == z) //detection of a straight line junction
   {
     rightmotor(90);
@@ -222,7 +224,7 @@ void linefollow(){
     //Kp is set
     Kp = 0.05; // 0.04
     
-    int baseSpeed = 75; //Setting the base speed
+    int baseSpeed = 85; //Setting the base speed
 
     float pid = Kp*err_avg + Kd*(err_avg - last_error); //Calculating the PID value
 
