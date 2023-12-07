@@ -9,6 +9,6 @@ void leftmotor(float speed);
 void rightTurn();
 void leftTurn();
 void calibrate();
-void linefollow();
+void linefollow(int baseSpeed_1);
 
 #endif

@@ -153,7 +153,7 @@ void calibrate(){
   leftmotor(0);
 }
 
-void linefollow(){
+void linefollow(int baseSpeed_1){
   //give sensor reading output as 1 for black color
   int left1 = digitalRead(leftSensor1);
   int left2 = digitalRead(leftSensor2);
@@ -224,7 +224,7 @@ void linefollow(){
     //Kp is set
     Kp = 0.07; // 0.04
     
-    int baseSpeed = 60; //Setting the base speed
+    int baseSpeed = baseSpeed_1; //Setting the base speed
 
     float pid = Kp*err_avg + Kd*(err_avg - last_error); //Calculating the PID value
 

@@ -6,7 +6,7 @@
 
 float last_error_wall = 0;
 
-bool wall_follow(float distance,int direction){
+void wall_follow(float distance,int direction){
   int baseSpeed = 60;
   float Kp = 1;
   float Kd = 1;
