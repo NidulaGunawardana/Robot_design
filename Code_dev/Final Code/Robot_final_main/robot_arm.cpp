@@ -1,5 +1,6 @@
 #include <Servo.h>
 #include <Arduino.h>
+#include "robot_arm.h"
 
 Servo lift ; // lifing servo servo2 >> attach to 12
 Servo grip; // gripping servo >> attach to 11

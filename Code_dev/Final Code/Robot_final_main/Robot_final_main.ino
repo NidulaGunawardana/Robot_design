@@ -2,6 +2,8 @@
 #include "distance.h"
 #include "line_following.h"
 #include "wall_following.h"
+#include "gyro_readings.h"
+#include "guaed_robot.h"
 EasyNex disp = EasyNex(Serial);
 
 float speed = 62;
@@ -16,19 +18,19 @@ void setup() {
   disp.writeStr("t0.txt", "Please Wait...");
   setID();
   portFix();
+  setup_gyro();
   disp.writeStr("t0.txt", "Calibrate to begin");
-  
 }
 
 void loop() {
 
-  float distSensors[7] = {sensor_1(),sensor_2(),sensor_3(),sensor_4(),sensor_5(),sensor_6(),sensor_7()};
-  for (int i = 0;i<8;i++){
-    Serial.print(distSensors[i]);
-    Serial.print(" ");
-  }
-  Serial.println("");
-  delay(50);
+  // float distSensors[7] = { sensor_1(), sensor_2(), sensor_3(), sensor_4(), sensor_5(), sensor_6(), sensor_7() };
+  // for (int i = 0; i < 8; i++) {
+  //   Serial.print(distSensors[i]);
+  //   Serial.print(" ");
+  // }
+  // Serial.println("");
+  // delay(50);
   // disp.NextionListen();
   // if (measureDistance == true) {
   //   if (sensor_1() <= 150){
@@ -36,11 +38,20 @@ void loop() {
   //   }
   //   else{
   //     linefollow();
-  //   }     
+  //   }
   // }
   // if (lineFollowing == true) {
   //   linefollow();
   // }
+
+  /////////////////////////////
+  // float angle = get_angle();
+  // if (angle > -9.00) {
+  //   Serial.println(angle);
+  // }
+  //////////////////////////////
+
+  detect_guard();
 }
 
 
@@ -184,4 +195,3 @@ void trigger13() {
   rightmotor(0);
   leftmotor(0);
 }
-

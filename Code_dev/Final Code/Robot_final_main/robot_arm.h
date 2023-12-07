@@ -3,6 +3,7 @@
 
 #include <Servo.h>
 #include <Arduino.h>
+#include "robot_arm.h"
 
 void servoPortFix();
 void griplift();

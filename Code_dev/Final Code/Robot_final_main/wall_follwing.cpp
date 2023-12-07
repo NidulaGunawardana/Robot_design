@@ -1,7 +1,8 @@
 #include <Arduino.h>
 #include "line_following.h"
 #include "distance.h"
-#include "line_following.h"
+#include "wall_following.h"
+
 
 bool wall_follow(float distance,int direction){
   int baseSpeed = 75;
