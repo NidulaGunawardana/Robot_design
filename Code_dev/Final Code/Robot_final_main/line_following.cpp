@@ -118,7 +118,7 @@ void leftmotor(float speed){
 void rightTurn(){
   leftmotor(65);
   rightmotor(90);
-  delay(400);
+  delay(350);
   leftmotor(-80);
   rightmotor(80);
   delay(770);
@@ -131,7 +131,7 @@ void leftTurn(){
 
   leftmotor(65);
   rightmotor(90);
-  delay(400);
+  delay(350);
   leftmotor(80);
   rightmotor(-80);
   delay(770);
@@ -222,9 +222,9 @@ void linefollow(){
     err_avg = err_avg/5;
 
     //Kp is set
-    Kp = 0.05; // 0.04
+    Kp = 0.07; // 0.04
     
-    int baseSpeed = 85; //Setting the base speed
+    int baseSpeed = 60; //Setting the base speed
 
     float pid = Kp*err_avg + Kd*(err_avg - last_error); //Calculating the PID value
 

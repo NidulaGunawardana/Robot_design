@@ -17,18 +17,33 @@ void setup() {
   setID();
   portFix();
   disp.writeStr("t0.txt", "Calibrate to begin");
+  calibrate();
+  delay(5000);
   
 }
 
 void loop() {
 
-  float distSensors[7] = {sensor_1(),sensor_2(),sensor_3(),sensor_4(),sensor_5(),sensor_6(),sensor_7()};
-  for (int i = 0;i<8;i++){
-    Serial.print(distSensors[i]);
-    Serial.print(" ");
+  if (sensor_3() < 190){ //object detected
+    delay(30);
+    if (sensor_3() < 190){
+      rightWallFollowSet();
+      Serial.println("Object detected");
+      float readingRight = sensor_1();
+      float initialRight = readingRight;
+      while (readingRight <= initialRight + 100 ){
+        wall_follow(initialRight,1);
+        readingRight = sensor_1();
+        delay(1);
+        readingRight = sensor_1();
+      }
+    }
   }
-  Serial.println("");
-  delay(50);
+  else{
+    linefollow();
+  }
+
+  
   // disp.NextionListen();
   // if (measureDistance == true) {
   //   if (sensor_1() <= 150){
