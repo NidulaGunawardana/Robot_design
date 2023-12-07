@@ -1,6 +1,7 @@
 
 #include <Wire.h>
 #include <Arduino.h>
+#include "gyro_readings.h"
 
 float RateRoll, RatePitch, RateYaw;
 float RateCalibrationRoll, RateCalibrationPitch, RateCalibrationYaw;
