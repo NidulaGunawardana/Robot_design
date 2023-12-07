@@ -6,6 +6,7 @@
 #include "wall_following.h"
 
 
-void wall_follow(float diatance);
+void wall_follow(float diatance, int direction);
+void rightWallFollowSet();
 
 #endif
