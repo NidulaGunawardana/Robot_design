@@ -110,5 +110,5 @@ float get_angle() {
     ;
   LoopTimer = micros();
 
-  return KalmanAngleRoll;
+  return KalmanAnglePitch;
 }
