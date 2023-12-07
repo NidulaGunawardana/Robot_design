@@ -3,7 +3,7 @@
 #include "distance.h"
 #include "line_following.h"
 
-bool wall_follow(float distance){
+bool wall_follow(float distance,int direction){
   int baseSpeed = 75;
   float Kp = 1;
   float error;
@@ -16,6 +16,11 @@ bool wall_follow(float distance){
 
 
   if (right_sensor_val < distance*1.5){
+    error = right_sensor_val - distance;
+    pid = Kp*error;
+  }
+
+  if (direction == 1){
     error = right_sensor_val - distance;
     pid = Kp*error;
   }

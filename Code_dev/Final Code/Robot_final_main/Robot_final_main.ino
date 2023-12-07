@@ -21,18 +21,26 @@ void setup() {
 }
 
 void loop() {
-  disp.NextionListen();
-  if (measureDistance == true) {
-    if (sensor_1() <= 150){
-      wall_follow(100);
-    }
-    else{
-      linefollow();
-    }     
+
+  float distSensors[7] = {sensor_1(),sensor_2(),sensor_3(),sensor_4(),sensor_5(),sensor_6(),sensor_7()};
+  for (int i = 0;i<8;i++){
+    Serial.print(distSensors[i]);
+    Serial.print(" ");
   }
-  if (lineFollowing == true) {
-    linefollow();
-  }
+  Serial.println("");
+  delay(50);
+  // disp.NextionListen();
+  // if (measureDistance == true) {
+  //   if (sensor_1() <= 150){
+  //     wall_follow(100);
+  //   }
+  //   else{
+  //     linefollow();
+  //   }     
+  // }
+  // if (lineFollowing == true) {
+  //   linefollow();
+  // }
 }
 
 

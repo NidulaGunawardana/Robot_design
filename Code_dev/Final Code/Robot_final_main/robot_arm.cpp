@@ -1,8 +1,12 @@
 #include <Servo.h>
 
-Servo lift; // lifing servo servo2 >> attach to 12
+Servo lift ; // lifing servo servo2 >> attach to 12
 Servo grip; // gripping servo >> attach to 11
 
+void servoPortFix(){
+  lift.attach(12);
+  grip.attach(11);
+}
 void griplift(){ //grip an object and lift it
   gripperOpen();
   armDown();
