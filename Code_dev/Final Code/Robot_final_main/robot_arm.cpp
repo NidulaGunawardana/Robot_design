@@ -1,4 +1,5 @@
 #include <Servo.h>
+#include <Arduino.h>
 
 Servo lift ; // lifing servo servo2 >> attach to 12
 Servo grip; // gripping servo >> attach to 11
@@ -7,18 +8,7 @@ void servoPortFix(){
   lift.attach(12);
   grip.attach(11);
 }
-void griplift(){ //grip an object and lift it
-  gripperOpen();
-  armDown();
-  gripperClose();
-  armLift();
-}
 
-void gripDrop(){ //release a gripped object
-  armDown();
-  gripperOpen();
-  armLift();
-}
 
 void gripperOpen(){ //open the gripper
   for (int i = 0;i <= 170; i++){
@@ -56,4 +46,17 @@ void initialPos(int vertical, int gripPos){ //initial position initializer
 void searchPos(){
   lift.write(110);
   grip.write(170);
+}
+
+void griplift(){ //grip an object and lift it
+  gripperOpen();
+  armDown();
+  gripperClose();
+  armLift();
+}
+
+void gripDrop(){ //release a gripped object
+  armDown();
+  gripperOpen();
+  armLift();
 }
