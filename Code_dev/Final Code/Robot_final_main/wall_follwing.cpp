@@ -110,8 +110,9 @@ int objectDetected(float th) {
 }
 
 void wall_follow_to_run(int speed, float kp, float kd) {
+  searchPos();
   if (objectDetected(180) == 0) {
-    linefollow(speed,0.015,0.02);
+    linefollow(speed, 0.015, 0.02);
   } else if (objectDetected(180) == 1 && wall_flag == 0) {
     //right wall follow
     rightWallFollowSet();
@@ -122,7 +123,7 @@ void wall_follow_to_run(int speed, float kp, float kd) {
     // }
     while (analogRead(A0) > 150 && analogRead(A1) > 150 && analogRead(A2) > 150 && analogRead(A3) > 150 && analogRead(A4) > 150 && analogRead(A5) > 150 && analogRead(A6) > 150) {
       leftmotor(60);
-      rightmotor(90);
+      rightmotor(80);
       delay(2);
     }
     rightmotor(0);
@@ -141,7 +142,7 @@ void wall_follow_to_run(int speed, float kp, float kd) {
     // }
     while (analogRead(A0) > 150 && analogRead(A1) > 150 && analogRead(A2) > 150 && analogRead(A3) > 150 && analogRead(A4) > 150 && analogRead(A5) > 150 && analogRead(A6) > 150) {
       leftmotor(60);
-      rightmotor(90);
+      rightmotor(80);
       delay(2);
     }
     rightmotor(0);
@@ -152,4 +153,8 @@ void wall_follow_to_run(int speed, float kp, float kd) {
     delay(200);
     wall_flag++;
   }
+}
+
+void resetFlag() {
+  wall_flag = 0;
 }

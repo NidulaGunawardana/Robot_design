@@ -12,5 +12,6 @@ void rightWallFollowSet();
 void leftWallFollowSet();
 int objectDetected(float th);
 void wall_follow_to_run(int speed, float kp, float kd);
+void resetFlag();
 
 #endif

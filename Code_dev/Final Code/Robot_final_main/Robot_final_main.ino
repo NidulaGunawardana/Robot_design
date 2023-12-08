@@ -11,8 +11,8 @@ EasyNex disp = EasyNex(Serial);
 
 float speed = 65;  //line- 75 wall - 60 sound - 61
 int level = 1;
-float kp = 0.041;
-float kd = 0.1;
+float kp = 0.035;
+float kd = 0.026;
 bool task1 = false;
 bool task2 = false;
 bool task3 = false;
@@ -35,6 +35,7 @@ void setup() {
   setup_mic();
   disp.writeStr("t0.txt", "Calibrate to begin");
   armLift();
+
   // calibrate();
   // searchPos();
   // delay(5000);
@@ -47,9 +48,9 @@ void loop() {
   disp.NextionListen();
 
   if (task1) {
-    speed = 70;
-    kp = 0.041;
-    kd = 0.0252;
+    speed = 63;
+    kp = 0.035;
+    kd = 0.026;
     linefollow(speed, kp, kd);
   } else if (task2) {
     speed = 60;
@@ -91,6 +92,11 @@ void loop() {
     rightmotor(0);
   }
   disp.NextionListen();
+
+
+
+
+
   // float distSensors[7] = {sensor_1(),sensor_2(),sensor_3(),sensor_4(),sensor_5(),sensor_6(),sensor_7()};
   // for (int i = 0;i<7;i++){
   //   Serial.print(distSensors[i]);
@@ -142,6 +148,7 @@ void trigger0() {
     task7 = false;
     disp.writeStr("page task1");
   } else if (level == 2) {
+    resetFlag();
     task1 = false;
     task2 = true;
     task3 = false;
@@ -334,7 +341,7 @@ void trigger10() {
 
 // Kd up
 void trigger11() {
-  kd += 0.01;
+  kd += 0.001;
   task1 = false;
   task2 = false;
   task3 = false;
@@ -348,7 +355,7 @@ void trigger11() {
 
 // Kd down
 void trigger12() {
-  kd -= 0.01;
+  kd -= 0.001;
   task1 = false;
   task2 = false;
   task3 = false;
