@@ -34,6 +34,7 @@ BeeLineSensorPro sensor = BeeLineSensorPro((unsigned char[]){
 
 //defining global variables
 float last_error = 0;
+float last_error_back = 0;
 int allBlackFlag = 0;
 
 int z = 0;  // 1 for black line follow, 0 for white line follow
@@ -262,3 +263,36 @@ void linefollow(int baseSpeed_1,float Kp, float Kd) {
     delay(2);
   }
 }
+
+void backlinefollow(int baseSpeed_1,float Kp, float Kd) {
+
+  // back line following is implemented
+  // float Kp;
+  // float Kd = 0.0252;  //line - 0.0252 wall - 0.02
+  float err_avg = 0;
+
+  for (int i = 0; i < 5; i++) {  //Average error is calculated
+    err_avg += sensor.readSensor();
+
+
+    delay(1);
+  }
+  err_avg = err_avg / 5;
+
+  // Kp is set
+  // Kp = 0.041;  // line - 0.041 wall - 0.015
+
+  int baseSpeed = baseSpeed_1;  //Setting the base speed
+
+  float pid = Kp * err_avg + Kd * (err_avg - last_error_back);  //Calculating the PID value
+
+  pid = -pid; // inverting the line following algorithm
+
+  last_error_back = err_avg;
+
+  //Setting the speeds to the motor
+  rightmotor(-baseSpeed + pid - 20);
+  leftmotor(-baseSpeed - pid);
+
+  delay(2);
+  }
