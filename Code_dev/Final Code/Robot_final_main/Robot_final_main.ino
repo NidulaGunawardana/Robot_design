@@ -25,13 +25,18 @@ void setup() {
   portFix();
   servoPortFix();
   delay(100);
-  // setup_gyro();
+  setup_gyro();
   // setup_mic();
   // disp.writeStr("t0.txt", "Calibrate to begin");
+<<<<<<< HEAD
   armLift();
   calibrate();
   searchPos();
   delay(5000);
+=======
+  // calibrate();
+  // delay(5000);
+>>>>>>> 8d6e8c7f19ca0ffb719361aa052e82afb6dcd83d
 }
 
 void loop() {
@@ -46,6 +51,7 @@ void loop() {
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
   // Serial.println("In the loop");
   if (objectDetected(180) == 0){
     linefollow(speed);
@@ -91,6 +97,10 @@ void loop() {
     delay(200);
     wall_flag++;
   }
+=======
+
+
+>>>>>>> 8d6e8c7f19ca0ffb719361aa052e82afb6dcd83d
   //////////////////////////////////////////////////
 
   // disp.NextionListen();
@@ -110,14 +120,16 @@ void loop() {
 
   // float angle = get_angle();
   // if (angle < -9.00) {
-  //   speed = 75;
-  // } else if (angle > 9.00) {
-  //   speed = 50;
+  //   speed = 140;
+  // } else if (angle > 8.00) {
+  //   speed = 2;
   // } else {
   //   speed = 65;
   // }
 
   // linefollow(speed);
+  // leftmotor(speed);
+  // rightmotor(speed + 20);
 
   //////////////////////////////
 
