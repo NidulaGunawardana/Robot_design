@@ -25,11 +25,11 @@ void setup() {
   servoPortFix();
   armLift();
   delay(100);
-  // setup_gyro();
+  setup_gyro();
   // setup_mic();
   // disp.writeStr("t0.txt", "Calibrate to begin");
-  calibrate();
-  delay(5000);
+  // calibrate();
+  // delay(5000);
 }
 
 void loop() {
@@ -45,8 +45,7 @@ void loop() {
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  lineFollowing();
-  if (senso)
+
   //////////////////////////////////////////////////
 
   // disp.NextionListen();
@@ -66,14 +65,16 @@ void loop() {
 
   // float angle = get_angle();
   // if (angle < -9.00) {
-  //   speed = 75;
-  // } else if (angle > 9.00) {
-  //   speed = 50;
+  //   speed = 140;
+  // } else if (angle > 8.00) {
+  //   speed = 2;
   // } else {
   //   speed = 65;
   // }
 
   // linefollow(speed);
+  // leftmotor(speed);
+  // rightmotor(speed + 20);
 
   //////////////////////////////
 
