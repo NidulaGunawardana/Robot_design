@@ -80,7 +80,7 @@ void rightWallFollowSet() {
   delay(1000);
   leftmotor(80);
   rightmotor(-80);
-  delay(450);
+  delay(500);
   leftmotor(0);
   rightmotor(0);
   delay(1000);
@@ -93,7 +93,7 @@ void leftWallFollowSet() {
   delay(1000);
   leftmotor(-80);
   rightmotor(80);
-  delay(390);
+  delay(450);
   leftmotor(0);
   rightmotor(0);
   delay(1000);
@@ -126,6 +126,7 @@ void wall_follow_to_run(int speed, float kp, float kd) {
       rightmotor(80);
       delay(2);
     }
+    delay(300);
     rightmotor(0);
     leftmotor(0);
     delay(200);
@@ -145,6 +146,7 @@ void wall_follow_to_run(int speed, float kp, float kd) {
       rightmotor(80);
       delay(2);
     }
+    delay(300);
     rightmotor(0);
     leftmotor(0);
     delay(200);

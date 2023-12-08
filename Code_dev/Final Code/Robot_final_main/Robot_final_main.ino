@@ -67,14 +67,17 @@ void loop() {
       speed = 65;
     }
 
-    speed = 75;
-    kp = 0.041;
-    kd = 0.0252;
-    linefollow(speed, kp, kd);
+    // speed = 75;
+    // kp = 0.041;
+    // kd = 0.0252;
+    // linefollow(speed, kp, kd);
     leftmotor(speed);
     rightmotor(speed + 20);
   } else if (task4) {
-
+    speed = 50;
+    kp = 0.05;
+    kd = 0.0;
+    backlinefollow(speed, kp, kd);
   } else if (task5) {
 
   } else if (task6) {

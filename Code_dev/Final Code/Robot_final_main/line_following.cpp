@@ -286,7 +286,7 @@ void backlinefollow(int baseSpeed_1,float Kp, float Kd) {
 
   float pid = Kp * err_avg + Kd * (err_avg - last_error_back);  //Calculating the PID value
 
-  pid = -pid; // inverting the line following algorithm
+  pid = pid; // inverting the line following algorithm
 
   last_error_back = err_avg;
 
