@@ -5,9 +5,11 @@
 #include "gyro_readings.h"
 #include "guaed_robot.h"
 #include "mic_reading.h"
+#include "robot_arm.h"
+#include "BeeLineSensorPro.h"
 EasyNex disp = EasyNex(Serial);
 
-float speed = 65;
+float speed = 75;
 int level = 1;
 float kp = 0.041;
 float kd = 0.1;
@@ -15,50 +17,36 @@ bool measureDistance = false;
 bool lineFollowing = false;
 
 void setup() {
-  disp.begin(9600);
-  disp.writeStr("t0.txt", "Please Wait...");
+  // disp.begin(9600);
+  // disp.writeStr("t0.txt", "Please Wait...");
   setID();
+  Serial.begin(9600);
   portFix();
-  setup_gyro();
-  setup_mic();
-  disp.writeStr("t0.txt", "Calibrate to begin");
+  servoPortFix();
+  armLift();
+  delay(100);
+  // setup_gyro();
+  // setup_mic();
+  // disp.writeStr("t0.txt", "Calibrate to begin");
+  calibrate();
+  delay(5000);
 }
 
 void loop() {
 
   // float distSensors[7] = {sensor_1(),sensor_2(),sensor_3(),sensor_4(),sensor_5(),sensor_6(),sensor_7()};
-  // for (int i = 0;i<8;i++){
+  // for (int i = 0;i<7;i++){
   //   Serial.print(distSensors[i]);
   //   Serial.print(" ");
   // }
   // Serial.println("");
-  // delay(50);
+  // delay(10);
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // float distSensors[7] = { sensor_1(), sensor_2(), sensor_3(), sensor_4(), sensor_5(), sensor_6(), sensor_7() };
-  // for (int i = 0; i < 8; i++) {
-  //   Serial.print(distSensors[i]);
-  //   Serial.print(" ");
-  //   if (sensor_3() < 190) {  //object detected
-  //     delay(30);
-  //     if (sensor_3() < 190) {
-  //       rightWallFollowSet();
-  //       Serial.println("Object detected");
-  //       float readingRight = sensor_1();
-  //       float initialRight = readingRight;
-  //       while (readingRight <= initialRight + 100) {
-  //         wall_follow(initialRight, 1);
-  //         readingRight = sensor_1();
-  //         delay(1);
-  //         readingRight = sensor_1();
-  //       }
-  //     }
-  //   } else {
-  //     linefollow();
-  //   }
-  //   Serial.println("");
-  //   delay(50);
+
+  lineFollowing();
+  if (senso)
   //////////////////////////////////////////////////
 
   // disp.NextionListen();
@@ -76,15 +64,17 @@ void loop() {
 
   /////////////////////////////
 
-  float angle = get_angle();
-  if (angle < -9.00) {
-    speed = 75;
-  } else if (angle > 9.00) {
-    speed = 50;
-  } else {
-    speed = 65;
-  }
-  linefollow(speed);
+  // float angle = get_angle();
+  // if (angle < -9.00) {
+  //   speed = 75;
+  // } else if (angle > 9.00) {
+  //   speed = 50;
+  // } else {
+  //   speed = 65;
+  // }
+
+  // linefollow(speed);
+
   //////////////////////////////
 
   // detect_guard();

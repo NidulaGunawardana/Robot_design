@@ -70,3 +70,23 @@ void rightWallFollowSet(){
   delay(1000);
 
 }
+
+void leftWallFollowSet(){
+
+  leftmotor(0);
+  rightmotor(0);
+  delay(1000);
+  leftmotor(-80);
+  rightmotor(80);
+  delay(390);
+  leftmotor(0);
+  rightmotor(0);
+  delay(1000);
+  leftmotor(65);
+  rightmotor(90);
+  delay(100);
+  leftmotor(0);
+  rightmotor(0);
+  delay(1000);
+
+}
