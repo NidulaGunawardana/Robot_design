@@ -235,7 +235,7 @@ void linefollow(int baseSpeed_1) {
 
     //line following is implemented
     float Kp;
-    float Kd = 0.0285;  // 0.0252
+    float Kd = 0.02;  // 0.0252
     float err_avg = 0;
 
     for (int i = 0; i < 5; i++) {  //Average error is calculated
@@ -247,7 +247,7 @@ void linefollow(int baseSpeed_1) {
     err_avg = err_avg / 5;
 
     //Kp is set
-    Kp = 0.041;  // 0.04
+    Kp = 0.015;  // 0.041
 
     int baseSpeed = baseSpeed_1;  //Setting the base speed
 

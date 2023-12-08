@@ -8,5 +8,7 @@
 
 void wall_follow(float diatance, int direction);
 void rightWallFollowSet();
+void leftWallFollowSet();
+int objectDetected(float th);
 
 #endif
