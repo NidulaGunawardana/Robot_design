@@ -13,31 +13,42 @@ float speed = 60;  //line- 75 wall - 60 sound - 61
 int level = 1;
 float kp = 0.041;
 float kd = 0.1;
-bool measureDistance = false;
-bool lineFollowing = false;
+bool task1 = false;
+bool task2 = false;
+bool task3 = false;
+bool task4 = false;
+bool task5 = false;
+bool task6 = false;
+bool task7 = false;
+
 
 
 void setup() {
-  // disp.begin(9600);
-  // disp.writeStr("t0.txt", "Please Wait...");
+  disp.begin(9600);
+  disp.writeStr("t0.txt", "Please Wait...");
   setID();
-  Serial.begin(9600);
+  // Serial.begin(9600);
   portFix();
   servoPortFix();
   delay(100);
-  // setup_gyro();
+  setup_gyro();
   setup_mic();
-  // disp.writeStr("t0.txt", "Calibrate to begin");
+  disp.writeStr("t0.txt", "Calibrate to begin");
   armLift();
-  calibrate();
-  searchPos();
-  delay(5000);
+  // calibrate();
+  // searchPos();
+  // delay(5000);
 
   // calibrate();
   // delay(5000);
 }
 
 void loop() {
+  disp.NextionListen();
+
+  if(task1){
+    
+  }
 
   // float distSensors[7] = {sensor_1(),sensor_2(),sensor_3(),sensor_4(),sensor_5(),sensor_6(),sensor_7()};
   // for (int i = 0;i<7;i++){
@@ -55,7 +66,7 @@ void loop() {
 
   //////////////////////////////////////////////////
 
-  // disp.NextionListen();
+
   // if (measureDistance == true) {
   //   if (sensor_1() <= 150){
   //     wall_follow(100);
@@ -99,33 +110,68 @@ void loop() {
 //Start button
 void trigger0() {
   if (level == 1) {
+    task1 = true;
+    task2 = false;
+    task3 = false;
+    task4 = false;
+    task5 = false;
+    task6 = false;
+    task7 = false;
     disp.writeStr("page task1");
-    measureDistance = false;
-    lineFollowing = true;
   } else if (level == 2) {
+    task1 = false;
+    task2 = true;
+    task3 = false;
+    task4 = false;
+    task5 = false;
+    task6 = false;
+    task7 = false;
     disp.writeStr("page task2");
-    measureDistance = true;
-    lineFollowing = false;
   } else if (level == 3) {
+    task1 = false;
+    task2 = false;
+    task3 = true;
+    task4 = false;
+    task5 = false;
+    task6 = false;
+    task7 = false;
     disp.writeStr("page task1");
-    measureDistance = false;
-    lineFollowing = false;
   } else if (level == 4) {
+    task1 = false;
+    task2 = false;
+    task3 = false;
+    task4 = true;
+    task5 = false;
+    task6 = false;
+    task7 = false;
     disp.writeStr("page task1");
-    measureDistance = false;
-    lineFollowing = false;
   } else if (level == 5) {
+    task1 = false;
+    task2 = false;
+    task3 = false;
+    task4 = false;
+    task5 = true;
+    task6 = false;
+    task7 = false;
     disp.writeStr("page task1");
-    measureDistance = false;
-    lineFollowing = false;
   } else if (level == 6) {
+    task1 = false;
+    task2 = false;
+    task3 = false;
+    task4 = false;
+    task5 = false;
+    task6 = true;
+    task7 = false;
     disp.writeStr("page task1");
-    measureDistance = false;
-    lineFollowing = false;
   } else if (level == 7) {
+    task1 = false;
+    task2 = false;
+    task3 = false;
+    task4 = false;
+    task5 = false;
+    task6 = false;
+    task7 = true;
     disp.writeStr("page task2");
-    measureDistance = false;
-    lineFollowing = false;
   }
 }
 
