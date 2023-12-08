@@ -9,13 +9,13 @@
 #include "BeeLineSensorPro.h"
 EasyNex disp = EasyNex(Serial);
 
-float speed = 60; //75
+float speed = 60;  //75
 int level = 1;
 float kp = 0.041;
 float kd = 0.1;
 bool measureDistance = false;
 bool lineFollowing = false;
-int wall_flag = 0;
+
 
 void setup() {
   // disp.begin(9600);
@@ -28,15 +28,13 @@ void setup() {
   setup_gyro();
   // setup_mic();
   // disp.writeStr("t0.txt", "Calibrate to begin");
-<<<<<<< HEAD
   armLift();
   calibrate();
   searchPos();
   delay(5000);
-=======
+
   // calibrate();
   // delay(5000);
->>>>>>> 8d6e8c7f19ca0ffb719361aa052e82afb6dcd83d
 }
 
 void loop() {
@@ -51,56 +49,10 @@ void loop() {
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD
   // Serial.println("In the loop");
-  if (objectDetected(180) == 0){
-    linefollow(speed);
-  }
-  else if (objectDetected(180) == 1 && wall_flag == 0){
-    //right wall follow
-    rightWallFollowSet();
-    // float rightVal = sensor_1();
-    // float intialRightVal = rightVal;
-    // while (sensor_1() < intialRightVal + 100){
-    //   wall_follow(intialRightVal, 1);
-    // }
-    while (analogRead(A0) > 150 && analogRead(A1) > 150 && analogRead(A2) > 150 && analogRead(A3) > 150 && analogRead(A4) > 150 && analogRead(A5) > 150 && analogRead(A6) > 150){
-      leftmotor(60);
-      rightmotor(90);
-      delay(2);
-    }
-    rightmotor(0);
-    leftmotor(0);
-    delay(200);
-    searchPos();
-    wall_flag++;
-    delay(200);
-  }  
-  else if (objectDetected(180) == 1 && wall_flag == 1){
-    //right wall follow
-    leftWallFollowSet();
-    // float rightVal = sensor_1();
-    // float intialRightVal = rightVal;
-    // while (sensor_1() < intialRightVal + 100){
-    //   wall_follow(intialRightVal, 1);
-    // }
-    while (analogRead(A0) > 150 && analogRead(A1) > 150 && analogRead(A2) > 150 && analogRead(A3) > 150 && analogRead(A4) > 150 && analogRead(A5) > 150 && analogRead(A6) > 150){
-      leftmotor(60);
-      rightmotor(90);
-      delay(2);
-    }
-    rightmotor(0);
-    leftmotor(0);
-    delay(200);
-    rightTurn();
-    searchPos();
-    delay(200);
-    wall_flag++;
-  }
-=======
 
+  wall_follow_to_run(speed, kp, kd);
 
->>>>>>> 8d6e8c7f19ca0ffb719361aa052e82afb6dcd83d
   //////////////////////////////////////////////////
 
   // disp.NextionListen();
