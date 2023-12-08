@@ -35,7 +35,7 @@ BeeLineSensorPro sensor = BeeLineSensorPro((unsigned char[]){
 //defining global variables
 float last_error = 0;
 float last_error_back = 0;
-int allBlackFlag = 0;
+// int allBlackFlag = 0;
 
 int z = 0;  // 1 for black line follow, 0 for white line follow
 
@@ -203,10 +203,10 @@ void linefollow(int baseSpeed_1,float Kp, float Kd) {
   // }
   if (right1 == z && right2 == z && left1 == z && left2 == z)  //detection of a straight line junction
   {
-    rightmotor(90);
-    leftmotor(65);
-    delay(300);
-    allBlackFlag++;
+    // rightmotor(90);
+    // leftmotor(65);
+    delayMicroseconds(1);
+    // allBlackFlag++;
   } else if ((left1 == z && left2 == z) && (right1 == 1 -z && right2 == 1 - z)) {  //detection of the 90 degree junction to the left
     rightmotor(90);
     leftmotor(65);
@@ -216,7 +216,7 @@ void linefollow(int baseSpeed_1,float Kp, float Kd) {
       rightmotor(90);
       leftmotor(65);
       delay(100);
-      allBlackFlag++;
+      // allBlackFlag++;
     } else {
       leftTurn();
     }
@@ -228,7 +228,7 @@ void linefollow(int baseSpeed_1,float Kp, float Kd) {
       rightmotor(90);
       leftmotor(65);
       delay(100);
-      allBlackFlag++;
+      // allBlackFlag++;
     } else {
       rightTurn();
     }

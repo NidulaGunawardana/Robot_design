@@ -11,6 +11,7 @@ EasyNex disp = EasyNex(Serial);
 
 float speed = 65;  //line- 75 wall - 60 sound - 61
 int level = 1;
+int allWhiteFlag = 0;
 float kp = 0.035;
 float kd = 0.026;
 bool task1 = false;
@@ -20,6 +21,7 @@ bool task4 = false;
 bool task5 = false;
 bool task6 = false;
 bool task7 = false;
+bool start = false;
 
 
 
@@ -45,13 +47,44 @@ void setup() {
 }
 
 void loop() {
+  bool task_detected = (task1 || task2 || task3 || task4 || task5 || task6 || task7);
+  if (analogRead(A0) < 60 && analogRead(A1) < 60 && analogRead(A2) < 60 && analogRead(A3) < 60 && analogRead(A4) < 60 && analogRead(A5) < 60 && analogRead(A6) < 60 && analogRead(A7) < 60 && task_detected)  //detection of a straight line junction
+  {
+    rightmotor(90);
+    leftmotor(65);
+    delay(800);
+    rightmotor(0);
+    leftmotor(0);
+    delay(800);
+
+    allWhiteFlag++;
+
+    if (allWhiteFlag == 1) {
+      level = 1;
+      trigger0();
+      allWhiteFlag++;
+      // disp.writeStr("page task1");
+    } else if (allWhiteFlag == 2) {
+      rightTurn();
+      level = 2;
+      trigger0();
+      allWhiteFlag++;
+    } else if (allWhiteFlag >= 3) {  //defining the ending position
+      delay(500);
+      rightmotor(0);
+      leftmotor(0);
+    }
+  }
+
+
   disp.NextionListen();
 
   if (task1) {
-    speed = 63;
-    kp = 0.035;
+    speed = 60;
+    kp = 0.032;
     kd = 0.026;
     linefollow(speed, kp, kd);
+
   } else if (task2) {
     speed = 60;
     kp = 0.015;
@@ -67,17 +100,14 @@ void loop() {
       speed = 65;
     }
 
-    // speed = 75;
-    // kp = 0.041;
-    // kd = 0.0252;
-    // linefollow(speed, kp, kd);
+    speed = 75;
+    kp = 0.041;
+    kd = 0.0252;
+    linefollow(speed, kp, kd);
     leftmotor(speed);
     rightmotor(speed + 20);
   } else if (task4) {
-    speed = 50;
-    kp = 0.05;
-    kd = 0.0;
-    backlinefollow(speed, kp, kd);
+    disp.writeStr("t0.txt", (String)analogRead(A0));
   } else if (task5) {
 
   } else if (task6) {
@@ -149,6 +179,7 @@ void trigger0() {
     task5 = false;
     task6 = false;
     task7 = false;
+    allWhiteFlag = 0;
     disp.writeStr("page task1");
   } else if (level == 2) {
     resetFlag();
@@ -159,6 +190,7 @@ void trigger0() {
     task5 = false;
     task6 = false;
     task7 = false;
+    allWhiteFlag = 1;
     disp.writeStr("page task2");
   } else if (level == 3) {
     task1 = false;
