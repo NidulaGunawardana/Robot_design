@@ -9,7 +9,7 @@
 #include "BeeLineSensorPro.h"
 EasyNex disp = EasyNex(Serial);
 
-float speed = 60;  //75
+float speed = 75;  //line- 75 wall - 60
 int level = 1;
 float kp = 0.041;
 float kd = 0.1;
@@ -25,8 +25,8 @@ void setup() {
   portFix();
   servoPortFix();
   delay(100);
-  setup_gyro();
-  // setup_mic();
+  // setup_gyro();
+  setup_mic();
   // disp.writeStr("t0.txt", "Calibrate to begin");
   armLift();
   calibrate();
@@ -51,7 +51,7 @@ void loop() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Serial.println("In the loop");
 
-  wall_follow_to_run(speed, kp, kd);
+  // wall_follow_to_run(speed, kp, kd);
 
   //////////////////////////////////////////////////
 
@@ -86,6 +86,13 @@ void loop() {
   //////////////////////////////
 
   // detect_guard();
+  double frequency = read_max_frequency();
+  if (frequency > 950 && frequency < 1050) {
+    linefollow(speed);
+  } else {
+    leftmotor(0);
+    rightmotor(0);
+  }
 }
 
 
