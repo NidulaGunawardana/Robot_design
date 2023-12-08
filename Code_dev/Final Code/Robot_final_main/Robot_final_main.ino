@@ -9,7 +9,7 @@
 #include "BeeLineSensorPro.h"
 EasyNex disp = EasyNex(Serial);
 
-float speed = 75;  //line- 75 wall - 60
+float speed = 60;  //line- 75 wall - 60 sound - 61
 int level = 1;
 float kp = 0.041;
 float kd = 0.1;
@@ -88,7 +88,7 @@ void loop() {
   // detect_guard();
   double frequency = read_max_frequency();
   if (frequency > 950 && frequency < 1050) {
-    linefollow(speed);
+    linefollow(speed,0.01,0.02);
   } else {
     leftmotor(0);
     rightmotor(0);

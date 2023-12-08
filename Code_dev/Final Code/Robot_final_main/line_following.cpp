@@ -182,7 +182,7 @@ void calibrate() {
   leftmotor(0);
 }
 
-void linefollow(int baseSpeed_1) {
+void linefollow(int baseSpeed_1,float Kp, float Kd) {
   //give sensor reading output as 1 for black color
   int left1 = digitalRead(leftSensor1);
   int left2 = digitalRead(leftSensor2);
@@ -234,8 +234,8 @@ void linefollow(int baseSpeed_1) {
   } else {
 
     //line following is implemented
-    float Kp;
-    float Kd = 0.0252;  //line - 0.0252 wall - 0.02
+    // float Kp;
+    // float Kd = 0.0252;  //line - 0.0252 wall - 0.02
     float err_avg = 0;
 
     for (int i = 0; i < 5; i++) {  //Average error is calculated
@@ -247,7 +247,7 @@ void linefollow(int baseSpeed_1) {
     err_avg = err_avg / 5;
 
     //Kp is set
-    Kp = 0.041;  // line - 0.041 wall - 0.015
+    // Kp = 0.041;  // line - 0.041 wall - 0.015
 
     int baseSpeed = baseSpeed_1;  //Setting the base speed
 

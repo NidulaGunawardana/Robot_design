@@ -111,7 +111,7 @@ int objectDetected(float th) {
 
 void wall_follow_to_run(int speed, float kp, float kd) {
   if (objectDetected(180) == 0) {
-    linefollow(speed);
+    linefollow(speed,0.015,0.02);
   } else if (objectDetected(180) == 1 && wall_flag == 0) {
     //right wall follow
     rightWallFollowSet();
