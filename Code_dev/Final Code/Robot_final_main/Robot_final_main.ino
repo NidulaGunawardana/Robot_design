@@ -52,7 +52,7 @@ void loop() {
   {
     rightmotor(90);
     leftmotor(65);
-    delay(800);
+    delay(750);
     rightmotor(0);
     leftmotor(0);
     delay(800);
@@ -61,18 +61,29 @@ void loop() {
 
     if (allWhiteFlag == 1) {
       level = 1;
+      disp.NextionListen();
       trigger0();
       allWhiteFlag++;
-      // disp.writeStr("page task1");
     } else if (allWhiteFlag == 2) {
       rightTurn();
       level = 2;
+      disp.NextionListen();
       trigger0();
       allWhiteFlag++;
-    } else if (allWhiteFlag >= 3) {  //defining the ending position
-      delay(500);
-      rightmotor(0);
-      leftmotor(0);
+    } else if (allWhiteFlag == 3) {  //defining the ending position
+      armLift();
+      delay(200);
+      rightTurn();
+      level = 3;
+      disp.NextionListen();
+      trigger0();
+      allWhiteFlag++;
+    } else if (allWhiteFlag == 4) {  //defining the ending position
+      // rightTurn();
+      level = 4;
+      disp.NextionListen();
+      trigger0();
+      allWhiteFlag++;
     }
   }
 
@@ -86,30 +97,35 @@ void loop() {
     linefollow(speed, kp, kd);
 
   } else if (task2) {
-    speed = 60;
+    speed = 59;
     kp = 0.015;
     kd = 0.02;
     wall_follow_to_run(speed, kp, kd);
   } else if (task3) {
     float angle = get_angle();
-    if (angle < -9.00) {
+    if (angle < -6.00) {
       speed = 140;
-    } else if (angle > 8.00) {
-      speed = 2;
+    } else if (angle > 6.00) {
+      speed = -5;
     } else {
-      speed = 65;
+      speed = 58;
     }
 
-    speed = 75;
-    kp = 0.041;
-    kd = 0.0252;
+    // speed = 75;
+    kp = 0.039;
+    kd = 0.026;
     linefollow(speed, kp, kd);
-    leftmotor(speed);
-    rightmotor(speed + 20);
+    // leftmotor(speed);
+    // rightmotor(speed + 20);
   } else if (task4) {
-    disp.writeStr("t0.txt", (String)analogRead(A0));
+    gripperOpen();
+    armDown();
+    gripperClose();
+    leftmotor(-65);
+    rightmotor(-90);
+    delay(1000);
   } else if (task5) {
-
+    disp.writeStr("t0.txt", (String)analogRead(A0));
   } else if (task6) {
     double frequency = read_max_frequency();
     speed = 61;
@@ -181,7 +197,9 @@ void trigger0() {
     task7 = false;
     allWhiteFlag = 0;
     disp.writeStr("page task1");
+    delay(100);
   } else if (level == 2) {
+    disp.writeStr("page task2");
     resetFlag();
     task1 = false;
     task2 = true;
@@ -191,8 +209,9 @@ void trigger0() {
     task6 = false;
     task7 = false;
     allWhiteFlag = 1;
-    disp.writeStr("page task2");
+    delay(100);
   } else if (level == 3) {
+    disp.writeStr("page task1");
     task1 = false;
     task2 = false;
     task3 = true;
@@ -200,7 +219,7 @@ void trigger0() {
     task5 = false;
     task6 = false;
     task7 = false;
-    disp.writeStr("page task1");
+    allWhiteFlag = 2;
   } else if (level == 4) {
     task1 = false;
     task2 = false;
@@ -209,6 +228,7 @@ void trigger0() {
     task5 = false;
     task6 = false;
     task7 = false;
+    allWhiteFlag = 3;
     disp.writeStr("page task1");
   } else if (level == 5) {
     task1 = false;
@@ -303,7 +323,7 @@ void trigger5() {
   task7 = false;
   disp.writeStr("t0.txt", "Calibrating...");
   calibrate();
-  delay(7000);
+  delay(4000);
   disp.writeStr("t0.txt", "Calibration Done.");
 }
 

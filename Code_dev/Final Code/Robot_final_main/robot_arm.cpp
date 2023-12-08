@@ -12,7 +12,7 @@ void servoPortFix(){
 
 
 void gripperOpen(){ //open the gripper
-  for (int i = 0;i <= 170; i++){
+  for (int i = 0;i <= 180; i++){
     grip.write(i);
     delay(12);
   }
