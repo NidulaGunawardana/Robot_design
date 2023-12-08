@@ -9,7 +9,7 @@
 #include "BeeLineSensorPro.h"
 EasyNex disp = EasyNex(Serial);
 
-float speed = 60;  //line- 75 wall - 60 sound - 61
+float speed = 65;  //line- 75 wall - 60 sound - 61
 int level = 1;
 float kp = 0.041;
 float kd = 0.1;
@@ -46,10 +46,51 @@ void setup() {
 void loop() {
   disp.NextionListen();
 
-  if(task1){
-    
-  }
+  if (task1) {
+    speed = 70;
+    kp = 0.041;
+    kd = 0.0252;
+    linefollow(speed, kp, kd);
+  } else if (task2) {
+    speed = 60;
+    kp = 0.015;
+    kd = 0.02;
+    wall_follow_to_run(speed, kp, kd);
+  } else if (task3) {
+    float angle = get_angle();
+    if (angle < -9.00) {
+      speed = 140;
+    } else if (angle > 8.00) {
+      speed = 2;
+    } else {
+      speed = 65;
+    }
 
+    speed = 75;
+    kp = 0.041;
+    kd = 0.0252;
+    linefollow(speed, kp, kd);
+    leftmotor(speed);
+    rightmotor(speed + 20);
+  } else if (task4) {
+
+  } else if (task5) {
+
+  } else if (task6) {
+    double frequency = read_max_frequency();
+    speed = 61;
+    if (frequency > 950 && frequency < 1050) {
+      linefollow(speed, 0.01, 0.02);
+    } else {
+      leftmotor(0);
+      rightmotor(0);
+    }
+  } else if (task7) {
+  } else {
+    leftmotor(0);
+    rightmotor(0);
+  }
+  disp.NextionListen();
   // float distSensors[7] = {sensor_1(),sensor_2(),sensor_3(),sensor_4(),sensor_5(),sensor_6(),sensor_7()};
   // for (int i = 0;i<7;i++){
   //   Serial.print(distSensors[i]);
@@ -81,29 +122,11 @@ void loop() {
 
   /////////////////////////////
 
-  // float angle = get_angle();
-  // if (angle < -9.00) {
-  //   speed = 140;
-  // } else if (angle > 8.00) {
-  //   speed = 2;
-  // } else {
-  //   speed = 65;
-  // }
 
-  // linefollow(speed);
-  // leftmotor(speed);
-  // rightmotor(speed + 20);
 
   //////////////////////////////
 
   // detect_guard();
-  double frequency = read_max_frequency();
-  if (frequency > 950 && frequency < 1050) {
-    linefollow(speed,0.01,0.02);
-  } else {
-    leftmotor(0);
-    rightmotor(0);
-  }
 }
 
 
@@ -178,39 +201,64 @@ void trigger0() {
 //level down
 void trigger1() {
   level--;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t0.txt", (String)level);
 }
 
 // level up
 void trigger2() {
   level++;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t0.txt", (String)level);
 }
 
 // speed down
 void trigger3() {
   speed--;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t2.txt", (String)speed);
 }
 
 // Speed Up
 void trigger4() {
   speed++;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t2.txt", (String)speed);
 }
 
 // calibrate button
 void trigger5() {
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t0.txt", "Calibrating...");
   calibrate();
   delay(7000);
@@ -220,8 +268,13 @@ void trigger5() {
 // Home button
 void trigger6() {
   speed++;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("page home");
   disp.writeStr("t0.txt", (String)level);
   disp.writeStr("t2.txt", (String)speed);
@@ -229,14 +282,25 @@ void trigger6() {
 
 // goto calibrate menue
 void trigger7() {
-  measureDistance = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("page calib");
 }
 
 // Settings button
 void trigger8() {
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("page settings");
   disp.writeStr("t3.txt", (String)kd);
   disp.writeStr("t2.txt", (String)kp);
@@ -245,24 +309,39 @@ void trigger8() {
 // Kp up
 void trigger9() {
   kp += 0.001;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t2.txt", (String)kp);
 }
 
 // Kp down
 void trigger10() {
   kp -= 0.001;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t2.txt", (String)kp);
 }
 
 // Kd up
 void trigger11() {
   kd += 0.01;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t3.txt", (String)kd);
 }
 
@@ -270,15 +349,25 @@ void trigger11() {
 // Kd down
 void trigger12() {
   kd -= 0.01;
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   disp.writeStr("t3.txt", (String)kd);
 }
 
 // Task stop button
 void trigger13() {
-  measureDistance = false;
-  lineFollowing = false;
+  task1 = false;
+  task2 = false;
+  task3 = false;
+  task4 = false;
+  task5 = false;
+  task6 = false;
+  task7 = false;
   rightmotor(0);
   leftmotor(0);
 }
