@@ -51,15 +51,14 @@ void loop() {
   bool task_detected = (task1 || task2 || task3 || task4 || task5 || task6 || task7);
   if (analogRead(A0) < 60 && analogRead(A1) < 60 && analogRead(A2) < 60 && analogRead(A3) < 60 && analogRead(A4) < 60 && analogRead(A5) < 60 && analogRead(A6) < 60 && analogRead(A7) < 60 && task_detected)  //detection of a straight line junction
   {
-    if (bypass != 2){
+    if (bypass != 2) {
       rightmotor(90);
       leftmotor(65);
       delay(750);
       rightmotor(0);
       leftmotor(0);
       delay(800);
-    }
-    else{
+    } else {
       rightmotor(0);
       leftmotor(0);
       delay(800);
@@ -78,7 +77,7 @@ void loop() {
       disp.NextionListen();
       trigger0();
       allWhiteFlag++;
-    } else if (allWhiteFlag == 3) {  
+    } else if (allWhiteFlag == 3) {
       armLift();
       delay(200);
       rightTurn();
@@ -92,8 +91,7 @@ void loop() {
       disp.NextionListen();
       trigger0();
       allWhiteFlag++;
-    }
-    else if (allWhiteFlag == 5){
+    } else if (allWhiteFlag == 5) {
       bypass = 1;
       rightmotor(-90);
       leftmotor(-65);
@@ -104,8 +102,7 @@ void loop() {
       rightTurn();
       armDown();
       gripperOpen();
-    }
-    else if (allWhiteFlag == 6){
+    } else if (allWhiteFlag == 6) {
       delayMicroseconds(1);
       // rightmotor(-90);
       // leftmotor(-65);
@@ -150,27 +147,26 @@ void loop() {
     kp = 0.02;
     kd = 0.026;
     linefollow(speed, kp, kd);
- 
+
   } else if (task4) {
- disp.writeStr("t0.txt", (String)allWhiteFlag);
-    if (bypass == 0){
+    disp.writeStr("t0.txt", (String)allWhiteFlag);
+    if (bypass == 0) {
       // speed = 75;
       kp = 0.02;
       kd = 0.026;
       linefollow(speed, kp, kd);
-    }
-    else if (bypass ==1){
-      
+    } else if (bypass == 1) {
+
       // speed = 75;
       kp = 0.02;
       kd = 0.026;
-      while (sensor_4() > 80){
+      while (sensor_4() > 80) {
         // speed = 75;
         kp = 0.02;
         kd = 0.026;
         linefollow(speed, kp, kd);
-    }
-     rightmotor(0);
+      }
+      rightmotor(0);
       leftmotor(0);
       delay(1000);
       gripperClose();
@@ -191,18 +187,17 @@ void loop() {
       rightmotor(90);
       leftmotor(-65);
       delay(240);
-      rightTurn(); 
+      rightTurn();
 
     }
 
-    else if (bypass == 2){
-      while (sensor_4() > 30){
+    else if (bypass == 2) {
+      while (sensor_4() > 30) {
         rightmotor(90);
         leftmotor(65);
       }
-    
     }
-    
+
 
     // gripperOpen();
     // armDown();
@@ -211,14 +206,16 @@ void loop() {
     // rightmotor(-90);
     // delay(1000);
   } else if (task5) {
-    
+
     disp.writeStr("t0.txt", (String)sensor_4());
   } else if (task6) {
     double frequency = read_max_frequency();
     disp.writeStr("t0.txt", (String)frequency);
     speed = 55;
     if (frequency < 950 || frequency > 1050) {
-      linefollow(speed, 0.009, 0.02);
+      kp = 0.001;
+      kd = 0.01;
+      linefollow(speed, kp, kd);
     } else {
       leftmotor(0);
       rightmotor(0);
