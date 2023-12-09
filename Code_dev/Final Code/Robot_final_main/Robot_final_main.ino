@@ -38,13 +38,6 @@ void setup() {
   setup_mic();
   disp.writeStr("t0.txt", "Calibrate to begin");
   armLift();
-
-  // calibrate();
-  // searchPos();
-  // delay(5000);
-
-  // calibrate();
-  // delay(5000);
 }
 
 void loop() {
@@ -209,7 +202,7 @@ void loop() {
       leftmotor(0);
       delay(500);
       //
-      
+
       rightTurn();
       //
 
@@ -263,6 +256,8 @@ void loop() {
       rightmotor(0);
     }
   } else if (task7) {
+    int guard = detect_guard();
+    disp.writeStr("t0.txt", (String)guard);
   } else {
     leftmotor(0);
     rightmotor(0);
@@ -385,6 +380,8 @@ void trigger0() {
     task6 = false;
     task7 = true;
     disp.writeStr("page task2");
+    searchPos();
+    initialPos(110,95);
   }
 }
 

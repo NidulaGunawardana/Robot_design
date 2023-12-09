@@ -4,6 +4,6 @@
 #include "distance.h"
 #include "guaed_robot.h"
 
-void detect_guard();
+int detect_guard();
 
 #endif

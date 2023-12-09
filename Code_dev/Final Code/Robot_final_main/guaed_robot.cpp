@@ -6,7 +6,7 @@
 int sensor_detection[5] = { 0, 0, 0, 0, 0 };
 int dir = 0;
 
-void detect_guard() {
+int detect_guard() {
   float sensor1 = 0;
   float sensor2 = 0;
   float sensor3 = 0;
@@ -44,12 +44,6 @@ void detect_guard() {
   sensor5 = sensor5 / 2;
 
 
-  // Serial.print((String)sensor1 + " ");
-  // Serial.print((String)sensor2 + " ");
-  // Serial.print((String)sensor3 + " ");
-  // Serial.print((String)sensor4 + " ");
-  // Serial.print((String)sensor5 + " ");
-  // Serial.println("");
   if (sensor1 < 450) {
     if (sensor_detection[3] == 1 && sensor_detection[4] == 0) {
       dir++;
@@ -123,11 +117,10 @@ void detect_guard() {
   } else if (dir < -4) {
     dir = -5;
   }
-  for (int i = 0; i < 5; i++) {
-    Serial.print((String)sensor_detection[i] + " ");
-  }
-  Serial.print(dir);
-  Serial.println("");
+  // for (int i = 0; i < 5; i++) {
+  //   Serial.print((String)sensor_detection[i] + " ");
+  // }
+  return dir;
 
   // sensor_detection[0] = 0;
   // sensor_detection[1] = 0;
