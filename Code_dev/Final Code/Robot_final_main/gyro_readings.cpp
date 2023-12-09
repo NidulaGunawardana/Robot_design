@@ -106,7 +106,7 @@ float get_angle() {
   // Serial.print(KalmanAngleRoll);
   // Serial.print(" Pitch Angle [°] ");
   // Serial.println(KalmanAnglePitch);
-  while (micros() - LoopTimer < 4000)
+  while (micros() - LoopTimer < 2000)
     ;
   LoopTimer = micros();
 

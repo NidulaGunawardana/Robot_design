@@ -174,7 +174,7 @@ void calibrate() {
     int speedr = 90 * pow(-1, j + 1);
     leftmotor(speedl);
     rightmotor(speedr);
-    for (int i = 0; i < 300; i++) {
+    for (int i = 0; i < 100; i++) {
       sensor.calibrate();
       delay(5);
     }
@@ -210,7 +210,7 @@ void linefollow(int baseSpeed_1,float Kp, float Kd) {
   } else if ((left1 == z && left2 == z) && (right1 == 1 -z && right2 == 1 - z)) {  //detection of the 90 degree junction to the left
     rightmotor(90);
     leftmotor(65);
-    delay(300);
+    delay(200);
     if (right1 == z && right2 == z && left1 == z && left2 == z)  // checking whether detected junction is a straight line junction
     {
       rightmotor(90);
@@ -223,7 +223,7 @@ void linefollow(int baseSpeed_1,float Kp, float Kd) {
   } else if ((left1 == 1 - z && left2 == 1 - z) && (right1 == z && right2 == z)) {  //detection of the 90 degree junction to the right
     rightmotor(90);
     leftmotor(65);
-    delay(300);
+    delay(200);
     if (right1 == z && right2 == z && left1 == z && left2 == z) {  //checking whether the detected junction is a straight line junction
       rightmotor(90);
       leftmotor(65);

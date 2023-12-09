@@ -12,6 +12,7 @@ EasyNex disp = EasyNex(Serial);
 float speed = 65;  //line- 75 wall - 60 sound - 61
 int level = 1;
 int allWhiteFlag = 0;
+int bypass = 0;
 float kp = 0.035;
 float kd = 0.026;
 bool task1 = false;
@@ -50,12 +51,19 @@ void loop() {
   bool task_detected = (task1 || task2 || task3 || task4 || task5 || task6 || task7);
   if (analogRead(A0) < 60 && analogRead(A1) < 60 && analogRead(A2) < 60 && analogRead(A3) < 60 && analogRead(A4) < 60 && analogRead(A5) < 60 && analogRead(A6) < 60 && analogRead(A7) < 60 && task_detected)  //detection of a straight line junction
   {
-    rightmotor(90);
-    leftmotor(65);
-    delay(750);
-    rightmotor(0);
-    leftmotor(0);
-    delay(800);
+    if (bypass != 2){
+      rightmotor(90);
+      leftmotor(65);
+      delay(750);
+      rightmotor(0);
+      leftmotor(0);
+      delay(800);
+    }
+    else{
+      rightmotor(0);
+      leftmotor(0);
+      delay(800);
+    }
 
     allWhiteFlag++;
 
@@ -70,7 +78,7 @@ void loop() {
       disp.NextionListen();
       trigger0();
       allWhiteFlag++;
-    } else if (allWhiteFlag == 3) {  //defining the ending position
+    } else if (allWhiteFlag == 3) {  
       armLift();
       delay(200);
       rightTurn();
@@ -84,6 +92,28 @@ void loop() {
       disp.NextionListen();
       trigger0();
       allWhiteFlag++;
+    }
+    else if (allWhiteFlag == 5){
+      bypass = 1;
+      rightmotor(-90);
+      leftmotor(-65);
+      delay(400);
+      rightmotor(0);
+      leftmotor(0);
+      delay(800);
+      rightTurn();
+      armDown();
+      gripperOpen();
+    }
+    else if (allWhiteFlag == 6){
+      delayMicroseconds(1);
+      // rightmotor(-90);
+      // leftmotor(-65);
+      // delay(900);
+      // rightmotor(0);
+      // leftmotor(0);
+      // delay(800);
+      // armDown();
     }
   }
 
@@ -103,29 +133,86 @@ void loop() {
     wall_follow_to_run(speed, kp, kd);
   } else if (task3) {
     float angle = get_angle();
-    if (angle < -6.00) {
-      speed = 140;
-    } else if (angle > 6.00) {
+    if (angle < -5.5) {
+      speed = 105;
+    } else if (angle > 3) {
       speed = -5;
     } else {
+      if (speed > 125 || speed < 15) {
+        leftmotor(0);
+        rightmotor(0);
+        delay(1000);
+      }
       speed = 58;
     }
 
     // speed = 75;
-    kp = 0.039;
+    kp = 0.02;
     kd = 0.026;
     linefollow(speed, kp, kd);
-    // leftmotor(speed);
-    // rightmotor(speed + 20);
+ 
   } else if (task4) {
-    gripperOpen();
-    armDown();
-    gripperClose();
-    leftmotor(-65);
-    rightmotor(-90);
-    delay(1000);
+ disp.writeStr("t0.txt", (String)allWhiteFlag);
+    if (bypass == 0){
+      // speed = 75;
+      kp = 0.02;
+      kd = 0.026;
+      linefollow(speed, kp, kd);
+    }
+    else if (bypass ==1){
+      
+      // speed = 75;
+      kp = 0.02;
+      kd = 0.026;
+      while (sensor_4() > 80){
+        // speed = 75;
+        kp = 0.02;
+        kd = 0.026;
+        linefollow(speed, kp, kd);
+    }
+     rightmotor(0);
+      leftmotor(0);
+      delay(1000);
+      gripperClose();
+      rightmotor(-90);
+      leftmotor(-65);
+      delay(3000);
+      rightmotor(0);
+      leftmotor(0);
+      delay(1000);
+      gripperOpen();
+      delay(300);
+      armLift();
+      delay(300);
+
+      rightmotor(90);
+      leftmotor(65);
+      delay(300);
+      rightmotor(90);
+      leftmotor(-65);
+      delay(240);
+      rightTurn(); 
+
+    }
+
+    else if (bypass == 2){
+      while (sensor_4() > 30){
+        rightmotor(90);
+        leftmotor(65);
+      }
+    
+    }
+    
+
+    // gripperOpen();
+    // armDown();
+    // gripperClose();
+    // leftmotor(-65);
+    // rightmotor(-90);
+    // delay(1000);
   } else if (task5) {
-    disp.writeStr("t0.txt", (String)analogRead(A0));
+    
+    disp.writeStr("t0.txt", (String)sensor_4());
   } else if (task6) {
     double frequency = read_max_frequency();
     speed = 61;
@@ -229,6 +316,7 @@ void trigger0() {
     task6 = false;
     task7 = false;
     allWhiteFlag = 3;
+    bypass = 0;
     disp.writeStr("page task1");
   } else if (level == 5) {
     task1 = false;
