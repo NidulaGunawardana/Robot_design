@@ -215,9 +215,10 @@ void loop() {
     disp.writeStr("t0.txt", (String)sensor_4());
   } else if (task6) {
     double frequency = read_max_frequency();
-    speed = 61;
-    if (frequency > 950 && frequency < 1050) {
-      linefollow(speed, 0.01, 0.02);
+    disp.writeStr("t0.txt", (String)frequency);
+    speed = 55;
+    if (frequency < 950 || frequency > 1050) {
+      linefollow(speed, 0.009, 0.02);
     } else {
       leftmotor(0);
       rightmotor(0);

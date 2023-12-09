@@ -174,7 +174,7 @@ void calibrate() {
     int speedr = 90 * pow(-1, j + 1);
     leftmotor(speedl);
     rightmotor(speedr);
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 150; i++) {
       sensor.calibrate();
       delay(5);
     }
