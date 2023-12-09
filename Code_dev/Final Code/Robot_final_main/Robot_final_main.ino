@@ -224,8 +224,15 @@ void loop() {
   } else if (task6) {
     double frequency = read_max_frequency();
     disp.writeStr("t0.txt", (String)frequency);
-    if speed
-      = 55;
+    if (digitalRead(8) == 0 && digitalRead(9) == 0 && digitalRead(10) == 1 && digitalRead(13) == 1) {
+      rightmotor(90);
+      leftmotor(-65);
+      delay(240);
+      rightTurn();
+    }
+    speed = 55;
+
+
     if (frequency < 950 || frequency > 1050) {
       kp = 0.001;
       kd = 0.01;
