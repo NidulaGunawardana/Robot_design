@@ -106,14 +106,19 @@ void loop() {
       gripperOpen();
     }
     else if (allWhiteFlag == 6){
-      delayMicroseconds(1);
-      // rightmotor(-90);
-      // leftmotor(-65);
-      // delay(900);
-      // rightmotor(0);
-      // leftmotor(0);
-      // delay(800);
-      // armDown();
+      bypass = 0;
+    }
+    else if (allWhiteFlag == 7){
+      rightmotor(90);
+      leftmotor(65);
+      delay(300);
+      rightmotor(-90);
+      leftmotor(65);
+      delay(240);
+      leftTurn(); 
+    }
+    else if (allWhiteFlag == 8){
+      rightTurn();
     }
   }
 
@@ -192,6 +197,8 @@ void loop() {
       leftmotor(-65);
       delay(240);
       rightTurn(); 
+
+      allWhiteFlag = 6;
 
     }
 
