@@ -102,8 +102,7 @@ void loop() {
       rightTurn();
       armDown();
       gripperOpen();
-    }
-    else if (allWhiteFlag == 6){
+    } else if (allWhiteFlag == 6) {
       delayMicroseconds(1);
       // rightmotor(-90);
       // leftmotor(-65);
@@ -112,6 +111,17 @@ void loop() {
       // leftmotor(0);
       // delay(800);
       // armDown();
+      bypass = 0;
+    } else if (allWhiteFlag == 7) {
+      rightmotor(90);
+      leftmotor(65);
+      delay(300);
+      rightmotor(-90);
+      leftmotor(65);
+      delay(240);
+      leftTurn();
+    } else if (allWhiteFlag == 8) {
+      rightTurn();
     }
   }
 
@@ -214,7 +224,8 @@ void loop() {
   } else if (task6) {
     double frequency = read_max_frequency();
     disp.writeStr("t0.txt", (String)frequency);
-    speed = 55;
+    if speed
+      = 55;
     if (frequency < 950 || frequency > 1050) {
       kp = 0.001;
       kd = 0.01;
