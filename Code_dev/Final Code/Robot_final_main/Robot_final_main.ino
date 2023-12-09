@@ -15,6 +15,7 @@ int allWhiteFlag = 0;
 int bypass = 0;
 float kp = 0.035;
 float kd = 0.026;
+int guard_past = 0;
 bool task1 = false;
 bool task2 = false;
 bool task3 = false;
@@ -257,6 +258,18 @@ void loop() {
     }
   } else if (task7) {
     int guard = detect_guard();
+    if (guard_past < guard) {
+      leftmotor(0);
+      rightmotor(0);
+      else if (guard_past > guard) {
+        rightmotor(90);
+        leftmotor(65);
+        delay(240);
+        kp = 0.001;
+        kd = 0.01;
+        linefollow(speed, kp, kd);
+      }
+    }
     disp.writeStr("t0.txt", (String)guard);
   } else {
     leftmotor(0);
@@ -379,9 +392,10 @@ void trigger0() {
     task5 = false;
     task6 = false;
     task7 = true;
+    allWhiteFlag = 9;
     disp.writeStr("page task2");
     searchPos();
-    initialPos(110,95);
+    initialPos(110, 95);
   }
 }
 
