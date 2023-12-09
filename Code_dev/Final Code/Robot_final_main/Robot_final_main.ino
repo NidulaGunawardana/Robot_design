@@ -102,7 +102,8 @@ void loop() {
       rightTurn();
       armDown();
       gripperOpen();
-    } else if (allWhiteFlag == 6) {
+    }
+    else if (allWhiteFlag == 6){
       delayMicroseconds(1);
       // rightmotor(-90);
       // leftmotor(-65);
@@ -188,6 +189,8 @@ void loop() {
       leftmotor(-65);
       delay(240);
       rightTurn();
+
+      allWhiteFlag = 6;
 
     }
 
