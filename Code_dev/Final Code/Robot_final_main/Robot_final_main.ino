@@ -184,6 +184,13 @@ void loop() {
       rightmotor(-90);
       leftmotor(-65);
       delay(3000);
+
+      //
+      rightmotor(-100);
+      leftmotor(100);
+      delay(600);
+      //
+
       rightmotor(0);
       leftmotor(0);
       delay(1000);
@@ -192,13 +199,27 @@ void loop() {
       armLift();
       delay(300);
 
-      rightmotor(90);
-      leftmotor(65);
-      delay(300);
-      rightmotor(90);
+      //
+
+      //
+      rightmotor(-90);
       leftmotor(-65);
-      delay(240);
+      delay(200);
+      rightmotor(0);
+      leftmotor(0);
+      delay(500);
+      //
+      
       rightTurn();
+      //
+
+      // rightmotor(90);
+      // leftmotor(65);
+      // delay(300);
+      // rightmotor(90);
+      // leftmotor(-65);
+      // delay(240);
+      // rightTurn();
 
       allWhiteFlag = 6;
 
