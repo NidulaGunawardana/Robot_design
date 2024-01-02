@@ -18,9 +18,6 @@ A heartfelt thanks to my incredible team for their dedication and collaborative 
 - The importance of adaptability and problem-solving in robotics.
 - Leveraging advanced sensors and technology for enhanced performance.
 
-🙏 Gratitude:
-Special thanks to our mentors and instructors for their guidance and support throughout this exhilarating journey. Your insights have been invaluable.
-
 🌐 Excited for the Future:
 As we step into the professional realm, these experiences will undoubtedly shape our engineering endeavors. Looking forward to applying these skills and innovations in future projects.
 
