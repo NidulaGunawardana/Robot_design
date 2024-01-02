@@ -23,3 +23,24 @@ Special thanks to our mentors and instructors for their guidance and support thr
 
 🌐 Excited for the Future:
 As we step into the professional realm, these experiences will undoubtedly shape our engineering endeavors. Looking forward to applying these skills and innovations in future projects.
+
+Solid Work Designs
+
+![alt](Images/IMG-20231121-WA0011.jpg)
+![alt](Images/IMG-20231121-WA0012.jpg)
+![alt](Images/IMG-20231121-WA0013.jpg)
+![alt](Images/IMG-20231121-WA0014.jpg)
+
+PCB Designs
+
+![alt](Images/Screenshot%202024-01-02%20172855.png)
+![alt](Images/Screenshot%202024-01-02%20173031.png)
+![alt](Images/Screenshot%202024-01-02%20173008.png)
+
+Final Robot
+
+![alt](Images/20231209_140333-2.jpg)
+
+Team
+
+![alt](Images/IMG-20231210-WA0021-2.jpg)
